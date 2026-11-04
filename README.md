@@ -1,6 +1,6 @@
 # Vienna Marathon training site
 
-Two pages for Tim's build to the Vienna City Marathon (April 18, 2027), published with GitHub Pages.
+Two pages for Tim's build to the Vienna City Marathon (April 18, 2027), published with GitHub Pages at **https://run.tdubois.com**.
 Both read the same `data.json`, so one refresh updates both.
 
 - **`index.html`** — *The Road to Vienna*, the shareable story page at the site's main address (story, race board, race-day photos, headline numbers).
@@ -31,7 +31,7 @@ pulls the latest data from Strava, Garmin (via Kailo) and TrainingPeaks; rewrite
 1. **Settings** → **Pages** (left sidebar).
 2. Under **Build and deployment** → **Source**, choose **Deploy from a branch**.
 3. Under **Branch**, pick `main` and `/ (root)`, then **Save**.
-4. Wait 1–2 minutes. The page is live at `https://<your-username>.github.io/<repo-name>/`.
+4. Wait 1–2 minutes. The site is live at https://run.tdubois.com (custom domain set via the `CNAME` file; domain verified in GitHub account settings; HTTPS enforced).
 
 ## Privacy note
 
