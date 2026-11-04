@@ -127,6 +127,7 @@ section{padding-block:clamp(54px,8vw,92px);border-bottom:1px solid var(--line)}
 /* under-construction stamp over the story text */
 .wip{position:relative}
 .wip-dim{opacity:.16;filter:blur(2.4px);user-select:none;pointer-events:none}
+#story .shead h2{opacity:.16;filter:blur(2.4px);user-select:none}
 .stamp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
 .stamp svg{width:min(560px,92%);height:auto;color:var(--accent);transform:rotate(-8deg);opacity:1;mix-blend-mode:normal}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .stamp svg{mix-blend-mode:multiply}}
@@ -249,7 +250,7 @@ html{scroll-behavior:smooth}
   <div class="wrap">
     <div class="shead">
       <div class="kicker">01 — The why</div>
-      <h2>I spent a long time on the <span class="ac">sidelines.</span></h2>
+      <h2 aria-hidden="true">I spent a long time on the <span class="ac">sidelines.</span></h2>
     </div>
     <div class="wip">
     <div class="wip-dim" aria-hidden="true">
