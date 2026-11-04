@@ -2,594 +2,454 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Vienna Marathon Build</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Road to Vienna</title>
+<meta name="description" content="Tim's road from a first run in September 2025 to the Vienna City Marathon, April 18, 2027.">
+<meta property="og:title" content="The Road to Vienna">
+<meta property="og:description" content="From a first run in September 2025 to the Vienna City Marathon, April 2027. Latest: a 1:54:31 half-marathon PR at the Golden Gate Half.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/gg-half-2026-bridge.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-  :root{
-    --ground:#eaeef2; --surface:#ffffff; --surface-2:#f4f7f9;
-    --ink:#13202b; --muted:#586572; --faint:#8794a1;
-    --border:#e0e6ec; --border-strong:#ccd5dd;
-    --accent:#d24a22; --accent-ink:#b23a17; --accent-soft:#fbe9e2;
-    --good:#2c8a57; --good-bg:#e4f1ea;
-    --warn:#a8791c; --warn-bg:#f6eeda;
-    --crit:#c0392b; --crit-bg:#f7e5e2;
-    --blue:#2f6f97;
-    --shadow:0 1px 2px rgba(19,32,43,.06),0 4px 16px rgba(19,32,43,.05);
-    --radius:14px;
-  }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
-      --ground:#0e141a; --surface:#161e26; --surface-2:#1d2831;
-      --ink:#e9eef3; --muted:#9aa7b3; --faint:#67747f;
-      --border:#28333d; --border-strong:#34404b;
-      --accent:#f26a3e; --accent-ink:#f5865f; --accent-soft:#2a1a12;
-      --good:#4db27b; --good-bg:#15281f;
-      --warn:#d3a244; --warn-bg:#2a2314;
-      --crit:#e35d4c; --crit-bg:#2c1714;
-      --blue:#5aa9d6;
-      --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.35);
-    }
-  }
-  :root[data-theme="dark"]{
-    --ground:#0e141a; --surface:#161e26; --surface-2:#1d2831;
-    --ink:#e9eef3; --muted:#9aa7b3; --faint:#67747f;
-    --border:#28333d; --border-strong:#34404b;
-    --accent:#f26a3e; --accent-ink:#f5865f; --accent-soft:#2a1a12;
-    --good:#4db27b; --good-bg:#15281f;
-    --warn:#d3a244; --warn-bg:#2a2314;
-    --crit:#e35d4c; --crit-bg:#2c1714;
-    --blue:#5aa9d6;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.35);
-  }
+/* Layout: editorial memoir on a dark warm ground. Left-aligned measured column; a progress ring, a race-results board, a race-day photo spread, and a projection-trend line. One accent — Ohio State scarlet. Serif display, sentence case. */
+:root{
+  /* dark-first */
+  --bg:#0F0C0A; --bg-2:#141010; --panel:#1A1512; --panel-2:#211A15;
+  --ink:#F2EADC; --muted:#A59A8B; --faint:#6E6457; --line:#29221C; --line-2:#3A2F26;
+  --accent:#E02435; --accent-soft:#2A0D10; --accent-ink:#fff;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+  --maxw:1020px; --col:68ch;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#F3EDE2; --bg-2:#EDE5D7; --panel:#FBF7EF; --panel-2:#F4EDE1;
+  --ink:#201812; --muted:#6A5E50; --faint:#978a79; --line:#E0D6C5; --line-2:#D2C6B2;
+  --accent:#BB0000; --accent-soft:#F6DCDC; --accent-ink:#fff;
+  color-scheme:light;
+}}
+:root[data-theme="light"]{
+  --bg:#F3EDE2; --bg-2:#EDE5D7; --panel:#FBF7EF; --panel-2:#F4EDE1;
+  --ink:#201812; --muted:#6A5E50; --faint:#978a79; --line:#E0D6C5; --line-2:#D2C6B2;
+  --accent:#BB0000; --accent-soft:#F6DCDC; --accent-ink:#fff;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0F0C0A; --bg-2:#141010; --panel:#1A1512; --panel-2:#211A15;
+  --ink:#F2EADC; --muted:#A59A8B; --faint:#6E6457; --line:#29221C; --line-2:#3A2F26;
+  --accent:#E02435; --accent-soft:#2A0D10; --accent-ink:#fff;
+  color-scheme:dark;
+}
 
-  *{box-sizing:border-box}
-  body{background:var(--ground); color:var(--ink); font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif; line-height:1.5; margin:0; -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:980px; margin:0 auto; padding:22px 16px 60px}
-  .eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); font-weight:500;}
-  h1,h2,h3{font-family:"Archivo",sans-serif; text-wrap:balance; margin:0}
-  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;font-size:16px}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:22px;height:1px;background:var(--accent);display:inline-block}
 
-  header.top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:22px;}
-  header.top h1{font-size:clamp(24px,6vw,34px); font-weight:800; letter-spacing:-.02em; line-height:1.02}
-  header.top .sub{color:var(--muted); font-size:14px; margin-top:6px}
-  .updated{text-align:right; font-size:11.5px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:6px 12px; background:var(--surface); white-space:nowrap;}
-  .updated b{color:var(--accent-ink); font-weight:600}
+/* ---------- top bar ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:13px;gap:14px}
+.sig{font-family:var(--serif);font-weight:900;font-size:1.12rem;letter-spacing:.01em}
+.sig em{color:var(--accent);font-style:normal}
+.top nav{display:flex;gap:20px;align-items:center}
+.top nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.top nav a:hover{color:var(--accent)}
+#themeBtn{background:none;border:1px solid var(--line-2);color:var(--muted);font-family:var(--mono);font-size:.66rem;padding:6px 11px;border-radius:2px;cursor:pointer;letter-spacing:.08em;text-transform:uppercase}
+#themeBtn:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:620px){.top nav a:not(#themeWrap){display:none}}
 
-  .countdowns{display:grid; grid-template-columns:1fr; gap:12px; margin-bottom:14px}
-  @media(min-width:620px){.countdowns{grid-template-columns:1.35fr 1fr}}
-  .cd{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; box-shadow:var(--shadow); position:relative; overflow:hidden;}
-  .cd.primary{border-color:var(--accent); background:linear-gradient(180deg,var(--accent-soft),var(--surface) 62%)}
-  .cd .label{display:flex; align-items:center; gap:8px; justify-content:space-between}
-  .cd .race{font-family:"Archivo"; font-weight:700; font-size:15px; letter-spacing:-.01em}
-  .cd .date{font-size:12px; color:var(--muted)}
-  .cd .big{font-family:"Archivo"; font-weight:800; letter-spacing:-.03em; line-height:.9; margin:10px 0 2px; color:var(--accent-ink); font-variant-numeric:tabular-nums;}
-  .cd.primary .big{font-size:clamp(52px,15vw,72px)}
-  .cd .big small{font-size:.34em; font-weight:600; color:var(--muted); letter-spacing:0}
-  .cd.sec .big{font-size:clamp(40px,11vw,54px); color:var(--ink)}
-  .cd .meta{font-size:12.5px; color:var(--muted)}
-  .meter{height:6px; border-radius:999px; background:var(--surface-2); overflow:hidden; margin-top:12px; border:1px solid var(--border)}
-  .meter > span{display:block; height:100%; background:var(--accent); border-radius:999px}
-  .cd.sec .meter > span{background:var(--border-strong)}
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.6;pointer-events:none;
+  background:radial-gradient(130% 80% at 82% -18%, color-mix(in srgb,var(--accent) 20%,transparent), transparent 60%);}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.45fr .9fr;gap:clamp(28px,5vw,64px);align-items:center;padding-top:clamp(46px,7vw,80px);padding-bottom:clamp(46px,7vw,80px)}
+@media (max-width:780px){.hero .wrap{grid-template-columns:1fr;gap:38px}}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(2.5rem,6.6vw,4.5rem);line-height:1.02;letter-spacing:-0.015em;margin:20px 0 0;text-wrap:balance}
+.hero h1 .ac{color:var(--accent);font-style:italic;font-weight:600}
+.hero .lede{margin-top:22px;font-size:1.12rem;color:var(--muted);max-width:52ch}
+.hero .lede b{color:var(--ink);font-weight:600}
+.hero-links{display:flex;gap:26px;margin-top:30px;flex-wrap:wrap;align-items:center}
+.lnk{font-family:var(--sans);font-weight:600;font-size:.98rem;text-decoration:none;color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:3px}
+.lnk:hover{color:var(--accent)}
+.lnk.ghost{border-bottom-color:var(--line-2);color:var(--muted)}
+.lnk.ghost:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
-  .timeline{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px 22px 26px; box-shadow:var(--shadow); margin-bottom:26px;}
-  .tl-track{position:relative; height:2px; background:var(--border-strong); margin:30px 6px 6px}
-  .tl-fill{position:absolute; left:0; top:0; height:100%; background:var(--accent)}
-  .tl-node{position:absolute; top:50%; transform:translate(-50%,-50%); text-align:center}
-  .tl-dot{width:11px; height:11px; border-radius:50%; background:var(--surface); border:2px solid var(--border-strong); margin:0 auto}
-  .tl-node.done .tl-dot,.tl-node.now .tl-dot,.tl-node.goal .tl-dot{background:var(--accent); border-color:var(--accent)}
-  .tl-node.now .tl-dot{box-shadow:0 0 0 4px var(--accent-soft)}
-  .tl-node.goal .tl-dot{width:14px; height:14px}
-  .tl-cap{position:absolute; top:16px; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:10.5px}
-  .tl-cap .t{font-family:"Archivo"; font-weight:700; font-size:11.5px; display:block}
-  .tl-cap .d{color:var(--faint); font-family:"IBM Plex Mono"}
-  .tl-node.flip .tl-cap{top:auto; bottom:16px}
+/* progress ring */
+.ring-card{justify-self:center;text-align:center}
+.ring{position:relative;width:min(260px,72vw);aspect-ratio:1}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .tnum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.ring .tnum .d{font-family:var(--serif);font-weight:900;font-size:clamp(2.6rem,9vw,3.6rem);line-height:.9;color:var(--ink);font-variant-numeric:tabular-nums}
+.ring .tnum .l{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ring-cap{margin-top:16px;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--faint);text-transform:uppercase}
+.ring-cap b{color:var(--accent)}
 
-  section{margin-bottom:26px}
-  .sec-head{display:flex; align-items:baseline; gap:10px; margin-bottom:12px}
-  .sec-head h2{font-size:15px; font-weight:700; letter-spacing:.01em}
-  .sec-head .note{font-size:12px; color:var(--faint); margin-left:auto}
+/* ---------- section frame ---------- */
+section{padding-block:clamp(54px,8vw,92px);border-bottom:1px solid var(--line)}
+.shead{margin-bottom:34px}
+.shead h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.08;margin:12px 0 0;letter-spacing:-0.01em;text-wrap:balance}
+.shead h2 .ac{color:var(--accent);font-style:italic}
 
-  .stats{display:grid; grid-template-columns:repeat(2,1fr); gap:10px}
-  @media(min-width:620px){.stats{grid-template-columns:repeat(4,1fr)}}
-  .stat{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 15px; box-shadow:var(--shadow)}
-  .stat .k{font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--faint); font-family:"IBM Plex Mono"}
-  .stat .v{font-family:"Archivo"; font-weight:800; font-size:26px; letter-spacing:-.02em; margin:6px 0 2px; font-variant-numeric:tabular-nums}
-  .stat .v small{font-size:13px; font-weight:600; color:var(--muted)}
-  .stat .cx{font-size:11.5px; color:var(--muted)}
-  .pill{display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-weight:600; font-family:"IBM Plex Mono"; padding:2px 8px; border-radius:999px; letter-spacing:.02em}
-  .pill.good{background:var(--good-bg); color:var(--good)}
-  .pill.warn{background:var(--warn-bg); color:var(--warn)}
-  .pill.info{background:var(--surface-2); color:var(--muted); border:1px solid var(--border)}
-  .pill::before{content:""; width:6px; height:6px; border-radius:50%; background:currentColor}
+/* ---------- story ---------- */
+.prose{max-width:var(--col)}
+.prose p{font-size:1.16rem;line-height:1.75}
+.prose p+p{margin-top:20px}
+.prose .first::first-letter{font-family:var(--serif);font-weight:900;font-size:3.3em;float:left;line-height:.82;padding:6px 12px 0 0;color:var(--accent)}
+.pullquote{max-width:var(--col);margin-top:34px;padding:22px 0 6px;border-top:1px solid var(--line-2);font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.3;color:var(--ink)}
+.ledger{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+@media (max-width:620px){.ledger{grid-template-columns:1fr 1fr}}
+.lcell{padding:20px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lcell:nth-child(4n){border-right:none}
+@media (max-width:620px){.lcell:nth-child(2n){border-right:none}}
+.lcell .lv{font-family:var(--serif);font-weight:900;font-size:1.7rem;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.lcell .lv small{font-size:.78rem;font-weight:600;color:var(--muted)}
+.lcell .lk{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:11px;line-height:1.4}
 
-  /* PB strip */
-  .pbstrip{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:10px}
-  @media(min-width:620px){.pbstrip{grid-template-columns:repeat(4,1fr)}}
-  .pb{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:12px 14px; box-shadow:var(--shadow); text-align:center}
-  .pb .e{font-size:11px; font-family:"IBM Plex Mono"; color:var(--faint); text-transform:uppercase; letter-spacing:.05em}
-  .pb .t{font-family:"Archivo"; font-weight:800; font-size:22px; color:var(--accent-ink); margin:3px 0 1px; font-variant-numeric:tabular-nums}
-  .pb .dt{font-size:10.5px; color:var(--muted); font-family:"IBM Plex Mono"}
+/* ---------- race board ---------- */
+.board{display:flex;flex-direction:column;border-top:1px solid var(--line-2)}
+.race{display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:baseline;padding:22px 2px;border-bottom:1px solid var(--line);position:relative}
+@media (max-width:620px){.race{grid-template-columns:1fr auto;row-gap:4px}.race .rdate{grid-column:1/-1}}
+.race .rdate{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;color:var(--faint);text-transform:uppercase;padding-top:6px}
+.race .rbody{min-width:0}
+.race .rname{font-family:var(--serif);font-weight:600;font-size:1.3rem;line-height:1.15}
+.race .rdesc{color:var(--muted);font-size:.96rem;margin-top:5px;max-width:58ch}
+.race .rmeta{font-family:var(--mono);font-size:.72rem;color:var(--faint);margin-top:8px;letter-spacing:.02em}
+.race .rres{font-family:var(--mono);font-weight:600;font-size:1.05rem;color:var(--muted);text-align:right;white-space:nowrap;align-self:center}
+.race.pr .rres,.race.goal .rres{color:var(--accent);font-size:1.3rem}
+.race.goal .rname,.race.pr .rname{color:var(--ink)}
+.race .tag{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:3px 8px;border-radius:2px;margin-left:10px;vertical-align:middle}
+.race.next{background:linear-gradient(90deg,var(--accent-soft),transparent 70%)}
+.race.next::before{content:"";position:absolute;left:-2px;top:0;bottom:0;width:3px;background:var(--accent)}
 
-  /* Fitness/Fatigue/Form */
-  .ff{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
-  .fftile{background:var(--surface); border:1px solid var(--border); border-top:3px solid var(--tc,var(--accent)); border-radius:12px; padding:13px 15px; box-shadow:var(--shadow)}
-  .fftile .k{font-size:10.5px; font-family:"IBM Plex Mono"; letter-spacing:.05em; text-transform:uppercase; color:var(--faint)}
-  .fftile .v{font-family:"Archivo"; font-weight:800; font-size:30px; letter-spacing:-.02em; margin:4px 0 1px; color:var(--tc,var(--ink)); font-variant-numeric:tabular-nums}
-  .fftile .cx{font-size:11px; color:var(--muted)}
-  .ramp{display:flex; gap:14px; flex-wrap:wrap; margin-top:12px; padding:11px 14px; background:var(--surface-2); border:1px solid var(--border); border-radius:10px; font-size:12px; color:var(--muted)}
-  .ramp b{font-family:"Archivo"; color:var(--ink); font-variant-numeric:tabular-nums}
-  .ramp .lbl{font-family:"IBM Plex Mono"; font-size:10px; text-transform:uppercase; letter-spacing:.04em; color:var(--faint); display:block}
+/* ---------- numbers ---------- */
+.num-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(26px,4vw,48px);align-items:stretch}
+@media (max-width:780px){.num-grid{grid-template-columns:1fr}}
+.chart-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px 20px 18px;display:flex;flex-direction:column}
+.chart-card .ct{font-family:var(--serif);font-weight:600;font-size:1.25rem}
+.chart-card .cs{font-size:.88rem;color:var(--muted);margin:5px 0 16px}
+.chart-box{position:relative;height:240px;flex:1}
+.stat-col{display:flex;flex-direction:column;gap:12px}
+.statrow{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:16px 2px;border-bottom:1px solid var(--line)}
+.statrow:first-child{border-top:1px solid var(--line-2)}
+.statrow .sv{font-family:var(--serif);font-weight:900;font-size:1.65rem;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.statrow .sv small{font-size:.8rem;font-weight:600;color:var(--muted)}
+.statrow .sk{font-family:var(--mono);font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:right;max-width:19ch}
+.src-note{margin-top:20px;font-family:var(--mono);font-size:.72rem;color:var(--faint);line-height:1.6}
 
-  .chartcard{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px 16px 14px; margin-top:12px}
-  .chartcard h3{font-size:13px; font-weight:700; margin-bottom:2px}
-  .chartcard .csub{font-size:11.5px; color:var(--muted); margin-bottom:10px}
-  .chart-wrap{position:relative; height:230px}
-  .chart-wrap.sm{height:190px}
-  .grid2{display:grid; grid-template-columns:1fr; gap:12px}
-  @media(min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
-  .grid3{display:grid; grid-template-columns:1fr; gap:12px}
-  @media(min-width:640px){.grid3{grid-template-columns:1fr 1fr 1fr}}
-  .cnote{font-size:11px; color:var(--faint); margin-top:10px; line-height:1.5; border-top:1px dashed var(--border); padding-top:9px}
-  .legend{display:flex; gap:14px; flex-wrap:wrap; font-size:11.5px; color:var(--muted); margin-top:8px}
-  .legend span{display:inline-flex; align-items:center; gap:6px}
-  .legend i{width:11px; height:11px; border-radius:3px; display:inline-block}
+/* ---------- footer ---------- */
+.foot{border-bottom:none;background:color-mix(in srgb,var(--bg-2) 82%,transparent)}
+.foot .wrap{padding-block:clamp(44px,7vw,72px)}
+.foot .fq{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.18;max-width:20ch}
+.foot .fq .ac{color:var(--accent);font-style:italic}
+.foot p{margin-top:18px;color:var(--muted);font-size:.98rem;max-width:58ch}
+.foot .meta{margin-top:20px;font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.04em}
 
-  .callout{background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:10px; padding:13px 16px; font-size:13.5px; color:var(--muted); box-shadow:var(--shadow); margin-bottom:14px;}
-  .callout b{color:var(--ink); font-weight:600}
-
-  .weekwrap{display:grid; grid-template-columns:1fr; gap:16px}
-  @media(min-width:720px){.weekwrap{grid-template-columns:1fr 1fr}}
-  .week{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
-  .week h3{font-size:12px; font-family:"IBM Plex Mono"; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); padding:12px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between}
-  .week h3 span{color:var(--accent-ink)}
-  ul.days{list-style:none; margin:0; padding:6px 0}
-  ul.days li{display:flex; gap:12px; align-items:flex-start; padding:8px 16px}
-  ul.days li + li{border-top:1px solid var(--border)}
-  .day{width:52px; flex:none; font-family:"IBM Plex Mono"; font-size:11px; color:var(--faint); padding-top:3px; line-height:1.3}
-  .day b{display:block; color:var(--ink); font-size:12px; font-weight:600}
-  .wk-body{flex:1; min-width:0}
-  .wk-title{font-size:13.5px; font-weight:500}
-  .wk-sub{font-size:11.5px; color:var(--muted)}
-  .chip{display:inline-block; font-size:10px; font-family:"IBM Plex Mono"; font-weight:600; letter-spacing:.03em; padding:2px 7px; border-radius:6px; margin-right:6px; vertical-align:1px}
-  .chip.easy{background:var(--good-bg); color:var(--good)}
-  .chip.z3{background:var(--warn-bg); color:var(--warn)}
-  .chip.long{background:var(--accent-soft); color:var(--accent-ink)}
-  .chip.str{background:var(--surface-2); color:var(--muted); border:1px solid var(--border)}
-  .chip.off{background:transparent; color:var(--faint); border:1px dashed var(--border-strong)}
-  .done{color:var(--good); font-weight:700; font-size:12px}
-  .today{display:inline-block; font-size:10px; font-family:"IBM Plex Mono"; font-weight:600; color:var(--accent-ink); background:var(--accent-soft); padding:1px 7px; border-radius:5px; margin-left:4px}
-
-  /* Recent runs table */
-  .tablecard{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
-  table.runs{width:100%; border-collapse:collapse; font-size:13px}
-  table.runs th{font-family:"IBM Plex Mono"; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); text-align:right; padding:10px 12px; border-bottom:1px solid var(--border); font-weight:600}
-  table.runs th:first-child,table.runs td:first-child{text-align:left}
-  table.runs th:nth-child(2){text-align:left}
-  table.runs td{padding:9px 12px; text-align:right; font-variant-numeric:tabular-nums; border-bottom:1px solid var(--border)}
-  table.runs td:nth-child(2){text-align:left; color:var(--muted); font-size:12px}
-  table.runs tr:last-child td{border-bottom:0}
-  .tag{display:inline-block; font-size:10px; font-family:"IBM Plex Mono"; font-weight:600; padding:1px 7px; border-radius:5px}
-  .tag.Easy{background:var(--good-bg); color:var(--good)}
-  .tag.Long{background:var(--accent-soft); color:var(--accent-ink)}
-  .tag.Workout{background:var(--warn-bg); color:var(--warn)}
-  .tag.Race{background:var(--crit-bg); color:var(--crit)}
-
-  .races{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
-  .race-row{display:flex; align-items:center; gap:12px; padding:12px 16px}
-  .race-row + .race-row{border-top:1px solid var(--border)}
-  .race-row.hero{background:linear-gradient(90deg,var(--accent-soft),transparent 80%)}
-  .race-row .rd{width:56px; flex:none; font-family:"IBM Plex Mono"; font-size:11px; color:var(--faint)}
-  .race-row .rn{flex:1; min-width:0; font-size:13.5px}
-  .race-row .rn b{font-weight:600}
-  .race-row .rn .rx{font-size:11.5px; color:var(--muted)}
-  .race-row .rt{font-family:"Archivo"; font-weight:700; font-size:15px; font-variant-numeric:tabular-nums; text-align:right}
-  .race-row.hero .rt{color:var(--accent-ink)}
-  .race-row .rt small{display:block; font-size:10px; color:var(--muted); font-weight:600; font-family:"IBM Plex Mono"}
-
-  .q{display:grid; grid-template-columns:1fr; gap:10px}
-  .qcard{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow); display:flex; gap:13px}
-  .qnum{font-family:"Archivo"; font-weight:800; font-size:15px; color:var(--accent); flex:none; width:24px; line-height:1.35; font-variant-numeric:tabular-nums}
-  .qbody .qt{font-size:14px; font-weight:600; margin-bottom:2px}
-  .qbody .qd{font-size:12.5px; color:var(--muted)}
-  .qtag{display:inline-block; font-size:10px; font-family:"IBM Plex Mono"; font-weight:600; color:var(--faint); text-transform:uppercase; letter-spacing:.05em; margin-top:6px}
-
-
-  /* Plan vs actual table */
-  .rp-scroll{overflow-x:auto}
-  table.rp{width:100%; border-collapse:collapse; font-size:12.5px; min-width:560px}
-  table.rp th{font-family:"IBM Plex Mono"; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); padding:9px 8px; border-bottom:1px solid var(--border); text-align:right; font-weight:600}
-  table.rp th:nth-child(-n+2), table.rp td:nth-child(-n+2){text-align:left}
-  table.rp td{padding:7px 8px; text-align:right; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums}
-  table.rp td.sg{color:var(--muted); font-size:11.5px}
-  table.rp th.g55,table.rp td.g55{background:color-mix(in srgb,var(--good) 7%,transparent)}
-  table.rp th.g50,table.rp td.g50{background:color-mix(in srgb,var(--accent) 7%,transparent)}
-
-  footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--border); font-size:11.5px; color:var(--faint); line-height:1.7}
-  footer b{color:var(--muted); font-weight:600}
-
-  .fade{opacity:0; transform:translateY(8px); animation:fu .5s ease forwards}
-  @keyframes fu{to{opacity:1; transform:none}}
-  @media(prefers-reduced-motion:reduce){.fade{animation:none; opacity:1; transform:none}}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+/* ---------- race-day photos ---------- */
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,20px);max-width:820px}
+@media (max-width:620px){.photos{grid-template-columns:1fr}}
+.photos figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.photos img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%}
+.photos figure:last-child img{object-position:50% 62%}
+.photos figcaption{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:12px 14px}
+.photos figcaption b{color:var(--accent);font-weight:600}
+.pr-strip{display:flex;flex-wrap:wrap;gap:12px 34px;margin:0 0 28px;padding:18px 0;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line)}
+.pr-strip div{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pr-strip b{display:block;font-family:var(--serif);font-weight:900;font-size:1.6rem;letter-spacing:0;text-transform:none;color:var(--ink);line-height:1.1;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.pr-strip .hl b{color:var(--accent)}
+/* route-line background from real GPS traces */
+#routebg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.2}
+#routebg svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+#routebg path{fill:none;stroke:var(--accent);stroke-width:1.5;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.hero,section,.foot{position:relative;z-index:1}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) #routebg{opacity:.12}}
+:root[data-theme="light"] #routebg{opacity:.12}
+:root[data-theme="dark"] #routebg{opacity:.2}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top fade">
-    <div>
-      <div class="eyebrow">Road to 26.2 · Coach Chas Hodgdon</div>
-      <h1>Vienna Marathon Build</h1>
-      <div class="sub">Tim&rsquo;s training cockpit — Golden Gate Half <b>done</b>: new half PR <b>1:54:31</b>, a 4-min PB. Vienna is the one focus now.</div>
-    </div>
-    <div class="updated">Updated <b>Nov&nbsp;1, 2026</b><br>Strava · Garmin/Kailo · TP</div>
-  </header>
 
-  <div class="countdowns fade">
-    <div class="cd primary">
-      <div class="label"><span class="race">🏁 Vienna City Marathon</span><span class="date">Sun · Apr 18, 2027</span></div>
-      <div class="big" id="v-days">—<small> days</small></div>
-      <div class="meta" id="v-meta">—</div>
-      <div class="meter"><span id="v-bar" style="width:0%"></span></div>
-    </div>
-    <div class="cd sec">
-      <div class="label"><span class="race">Golden Gate Half ✓</span><span class="date">Nov 1, 2026</span></div>
-      <div class="big">1:54:31<small> new PR</small></div>
-      <div class="meta">13.18 mi · 8:41/mi · avg HR 165 · beat the 1:55 target by 29 sec</div>
-    </div>
+<div id="routebg" aria-hidden="true"></div>
+<div class="top">
+  <div class="wrap">
+    <div class="sig">Tim<em>/</em>26.2</div>
+    <nav>
+      <a href="#story">Story</a>
+      <a href="#road">Races</a>
+      <a href="#raceday">Race day</a>
+      <a href="#numbers">Numbers</a>
+      <button id="themeBtn" type="button">Light</button>
+    </nav>
   </div>
-
-  <div class="timeline fade">
-    <div class="eyebrow">The runway</div>
-    <div class="tl-track">
-      <div class="tl-fill" id="tl-fill" style="width:0%"></div>
-      <div class="tl-node done" style="left:0%"><div class="tl-dot"></div><div class="tl-cap"><span class="t">GG Half ✓</span><span class="d">Nov 1</span></div></div>
-      <div class="tl-node" id="n-tt" style="left:38%"><div class="tl-dot"></div><div class="tl-cap"><span class="t">Turkey Trot</span><span class="d">Nov 26</span></div></div>
-      <div class="tl-node goal flip" style="left:100%"><div class="tl-dot"></div><div class="tl-cap"><span class="t">Vienna 🏁</span><span class="d">Apr 18</span></div></div>
-    </div>
-  </div>
-
-
-  <section class="fade" id="raceplan">
-    <div class="sec-head"><h2>Golden Gate Half — race result</h2><span class="note">Nov 1 · 1:54:31 · new PR</span></div>
-    <div class="callout"><b>Result: 1:54:31</b> — 13.18 mi, 8:41/mi, avg HR 165 (max 184), ~780 ft of climbing. That&rsquo;s a <b>4:07 half-marathon PR</b> and 29 sec inside the 1:55 target on a hilly course — a controlled race, not a blow-up. It also set new Strava bests for the <b>mile (7:42)</b> and <b>10K (53:22)</b> along the way. Chas now has clean data to set your Vienna training paces.</div>
-    <div class="chartcard" style="margin-top:0">
-      <h3>Plan vs. actual — by course section</h3>
-      <div class="csub">How each programmed step actually went on Nov 1 — moving pace &amp; avg HR from the watch (Garmin laps), against the 1:55 plan. Net result: <b>1:54:31</b>, 29 sec under plan.</div>
-      <div class="rp-scroll"><table class="rp">
-        <thead><tr><th>#</th><th>Section</th><th>Dist</th><th>RPE</th><th class="g55">1:55 pace</th><th class="g55">1:55 HR</th><th class="g50">Actual pace</th><th class="g50">Actual HR</th></tr></thead>
-        <tbody>
-<tr><td>1</td><td class="sg">Start + Fort Mason hump</td><td>0.90</td><td>5</td><td class="g55">8:50–9:05</td><td class="g55">150–158</td><td class="g50">8:46</td><td class="g50">154</td></tr>
-<tr><td>2</td><td class="sg">Marina → Crissy (flat)</td><td>2.08</td><td>6</td><td class="g55">8:32–8:46</td><td class="g55">156–162</td><td class="g50">8:20</td><td class="g50">160</td></tr>
-<tr><td>3</td><td class="sg">Climb to bridge (+215 ft)</td><td>0.87</td><td>7</td><td class="g55">9:30–10:00</td><td class="g55">158–166 cap</td><td class="g50">9:27</td><td class="g50">166</td></tr>
-<tr><td>4</td><td class="sg">Bridge out</td><td>1.73</td><td>6</td><td class="g55">8:38–8:54</td><td class="g55">160–165</td><td class="g50">8:51</td><td class="g50">163</td></tr>
-<tr><td>5</td><td class="sg">Fort Baker hairpin</td><td>0.58</td><td>7</td><td class="g55">9:10–9:45</td><td class="g55">158–168 cap</td><td class="g50">8:32</td><td class="g50">160</td></tr>
-<tr><td>6</td><td class="sg">Bridge back</td><td>1.05</td><td>6–7</td><td class="g55">8:40–8:56</td><td class="g55">160–166</td><td class="g50">9:26</td><td class="g50">168</td></tr>
-<tr><td>7</td><td class="sg">Drop into Presidio</td><td>0.77</td><td>6</td><td class="g55">8:08–8:26</td><td class="g55">158–165</td><td class="g50">8:52</td><td class="g50">162</td></tr>
-<tr><td>8</td><td class="sg">Presidio climb (+170 ft)</td><td>1.06</td><td>7–8</td><td class="g55">9:05–9:40</td><td class="g55">162–168 cap</td><td class="g50">9:24</td><td class="g50">167</td></tr>
-<tr><td>9</td><td class="sg">Big descent (−320 ft)</td><td>1.35</td><td>6–7</td><td class="g55">7:55–8:15</td><td class="g55">158–166</td><td class="g50">8:01</td><td class="g50">166</td></tr>
-<tr><td>10</td><td class="sg">Crissy → Marina (flat)</td><td>2.02</td><td>8</td><td class="g55">8:28–8:42</td><td class="g55">166–172</td><td class="g50">8:28</td><td class="g50">172</td></tr>
-<tr><td>11</td><td class="sg">Fort Mason hump + finish</td><td>0.69</td><td>9–10</td><td class="g55">8:35–8:55</td><td class="g55">172+ open</td><td class="g50">8:36</td><td class="g50">178</td></tr>
-        </tbody>
-      </table></div>
-      <div class="cnote"><b>How it played out vs the 1:55 plan:</b> banked time early (the Marina flat at 8:20 and both bridge climbs at/under plan), gave a little back on the bridge-back and the drop into the Presidio — ran those more conservatively than planned — then closed hard: the big descent at 8:01 and the flat-to-finish at 8:28 / 8:36 with HR climbing to 178. Net 1:54:31, 29 sec inside plan. Actual = moving pace &amp; avg HR per step (Garmin laps).</div>
-    </div>
-  </section>
-  <section class="fade">
-    <div class="sec-head"><h2>Current fitness</h2><span class="note">Garmin / Kailo</span></div>
-    <div class="stats">
-      <div class="stat"><div class="k">Marathon projection</div><div class="v">3:57</div><span class="pill good">sub-4:00 · race not yet scored</span></div>
-      <div class="stat"><div class="k">VO₂ max</div><div class="v">49</div><span class="pill warn">flat since spring</span></div>
-      <div class="stat"><div class="k">Resting HR</div><div class="v">53<small> bpm</small></div><span class="pill good">strong engine</span></div>
-      <div class="stat"><div class="k">Lactate threshold</div><div class="v">170<small> bpm</small></div><span class="pill info">HR ceiling</span></div>
-    </div>
-    <div class="pbstrip" id="pbstrip"></div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Fitness · Fatigue · Form</h2><span class="note">TP tiles as of Oct 30</span></div>
-    <div class="ff">
-      <div class="fftile" style="--tc:var(--blue)"><div class="k">Fitness · CTL</div><div class="v">67</div><div class="cx">chronic load</div></div>
-      <div class="fftile" style="--tc:var(--crit)"><div class="k">Fatigue · ATL</div><div class="v">76</div><div class="cx">acute load</div></div>
-      <div class="fftile" style="--tc:var(--warn)"><div class="k">Form · TSB</div><div class="v">−11</div><div class="cx">likely inflated — see note</div></div>
-    </div>
-    <div class="ramp">
-      <span><span class="lbl">7-day</span><b>+2</b></span>
-      <span><span class="lbl">28-day</span><b>+13</b></span>
-      <span><span class="lbl">90-day</span><b>+5</b></span>
-      <span><span class="lbl">365-day</span><b>+36</b></span>
-      <span style="color:var(--muted); align-self:center">← Fitness ramp rates (TP) · all climbing</span>
-    </div>
-    <div class="chartcard">
-      <h3>Fitness &amp; Fatigue — last 12 weeks</h3>
-      <div class="csub">Fitness peaked at a new high going into the race. The curve now runs through race day: the taper let fatigue drain (Form briefly positive on Oct 31), then the half itself was a big one-day load (~175), pushing modeled Fatigue back up to ~76 and Form to about −8. Expect Form to swing positive again over a recovery week.</div>
-      <div class="chart-wrap"><canvas id="ffChart"></canvas></div>
-      <div class="chartcard" style="margin-top:12px; box-shadow:none; border:0; padding:0">
-        <div class="chart-wrap sm"><canvas id="formChart"></canvas></div>
-      </div>
-      <div class="cnote">Tiles are the last real TrainingPeaks read (Oct 30: Fitness 67 / Fatigue 76 / Form −11) — TP was logged out on Nov 1, so the race isn&rsquo;t in the tiles yet. The curve is modeled from session load (LT 170), calibrated to TP, and includes the Oct 31 shakeout and race. Caveat: TP&rsquo;s threshold HR is set to 157 (your real LT is ~170), which inflates every run&rsquo;s load and makes Form read more negative than you actually are — see question #4.</div>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Weekly mileage</h2><span class="note">12 weeks · Garmin</span></div>
-    <div class="chartcard">
-      <h3>Volume &amp; trend</h3>
-      <div class="csub">Post-SF-half reset through August, then a strong build — up to ~37 mi in late September. The dashed line is the 12-week trend. Oct 19 (37.5 mi) was the final load week; race week (Oct 26 – Nov 1) totaled 29.3 mi — 16.1 mi of taper running plus the 13.2-mi race.</div>
-      <div class="chart-wrap"><canvas id="mileChart"></canvas></div>
-      <div class="cnote">Volume ramped hard into the GG Half (peaking ~35–37 mi/wk) — a big step up from the August reset. Next week should come down while the legs recover from the race.</div>
-    </div>
-    <div class="chartcard">
-      <h3>How your volume compares — marathon cohort</h3>
-      <div class="csub">Weekly mileage percentiles from ~1,000 sub-4:00 marathon builds across a 16-week block. You&rsquo;re still <b>pre-build</b> for Vienna (24 wks out); your recent ~35 mi/wk is the dashed line.</div>
-      <div class="chart-wrap"><canvas id="cohortChart"></canvas></div>
-      <div class="cnote">Directional, not a prescription. At ~35 mi/wk you&rsquo;re already around the cohort&rsquo;s mid-to-upper band — and the formal 16-week Vienna block hasn&rsquo;t even started (~late Dec). Ahead of schedule.</div>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Recovery</h2><span class="note">~6 weeks · Garmin via Kailo</span></div>
-    <div class="grid3">
-      <div class="chartcard"><h3>HRV</h3><div class="csub">7-day avg (ms)</div><div class="chart-wrap sm"><canvas id="hrvChart"></canvas></div></div>
-      <div class="chartcard"><h3>Resting HR</h3><div class="csub">7-day avg (bpm)</div><div class="chart-wrap sm"><canvas id="rhrChart"></canvas></div></div>
-      <div class="chartcard"><h3>Sleep</h3><div class="csub">hours / night</div><div class="chart-wrap sm"><canvas id="sleepChart"></canvas></div></div>
-    </div>
-    <div class="cnote" style="border:0; padding-top:6px">Charts run through race morning (Nov 1). <b>You arrived at the start line fresh:</b> HRV held in the mid-50s all taper (54 race morning), resting HR steady at 52–54, and 7–8 h of sleep each of the last three nights. Watch the next 2–3 mornings — a dip in HRV and a bump in resting HR after a race effort is normal; if they haven&rsquo;t settled by Thursday, take that as a sign to go easier on Friday&rsquo;s 12-miler.</div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>VO₂ max</h2><span class="note">Garmin watch readings</span></div>
-    <div class="chartcard">
-      <h3>The plateau to break</h3>
-      <div class="csub">Confirmed still <b>49</b> on Oct 19 (Garmin: &ldquo;Excellent, top 20%&rdquo; for your age). It&rsquo;s held at 48–49 since spring — so the projection dropping to 3:57 is from aerobic volume &amp; efficiency, not a higher ceiling. Check whether the race nudges it up. The new interval/tempo work is the lever to finally move it.</div>
-      <div class="chart-wrap sm"><canvas id="vo2Chart"></canvas></div>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Are easy days actually easy?</h2><span class="note">12 weeks · pace vs HR</span></div>
-    <div class="chartcard">
-      <h3>Easy/long vs workouts</h3>
-      <div class="csub">Each dot is a run: pace (left = faster) vs average HR. Aerobic days should sit low-and-left; the horizontal line marks HR 145.</div>
-      <div class="chart-wrap"><canvas id="paceChart"></canvas></div>
-      <div class="legend">
-        <span><i style="background:var(--good)"></i>Easy / long</span>
-        <span><i style="background:var(--warn)"></i>Workout</span>
-        <span><i style="background:var(--crit)"></i>Race</span>
-      </div>
-      <div class="cnote">Aerobic runs still average <b>HR 145</b> — easy discipline is holding even as volume climbed. The headline: your long runs are now <b>fast at low HR</b> — the Oct 17 14-miler ran 8:56/mi at HR 148, where the July half was 9:03/mi at HR 171. Race to race: GG Half ran 8:41/mi at HR 165 on a much hillier course. That&rsquo;s a big aerobic-efficiency gain. Real quality (intervals, tempo, strides) is now in the plan too.</div>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Recent runs</h2><span class="note">last 14 · Strava + Garmin</span></div>
-    <div class="tablecard">
-      <table class="runs">
-        <thead><tr><th>Date</th><th>Run</th><th>Miles</th><th>Pace</th><th>Avg HR</th><th>Type</th></tr></thead>
-        <tbody id="runsBody"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>This block — Chas&rsquo;s plan</h2><span class="note">TP plan feed · through Nov 8</span></div>
-    <div class="callout">
-      <b>Raced and PR&rsquo;d — now recover.</b> Chas has loaded the next week: Monday off, then a <b>12-mile easy run on Friday (Nov 6)</b> at 60% effort — only five days after a race effort. That&rsquo;s a real long run, not a jog. Keep it truly easy (HR under ~145), and check with Chas before Friday if your legs are still sore or your HRV is down. Nothing else is posted yet for Nov 2–8.
-    </div>
-    <div class="weekwrap">
-      <div class="week">
-        <h3>Race week · Oct 26 – Nov 1 <span>done ✓</span></h3>
-        <ul class="days">
-          <li><div class="day"><b>Mon</b>26</div><div class="wk-body"><div class="wk-title"><span class="chip off">OFF</span>Recovery · hydrate <span class="done">✓</span></div></div></li>
-          <li><div class="day"><b>Tue</b>27</div><div class="wk-body"><div class="wk-title"><span class="chip easy">EASY</span>Easy 5.0 mi <span class="done">✓</span></div><div class="wk-sub">8:56/mi · HR 139 — fresh</div></div></li>
-          <li><div class="day"><b>Wed</b>28</div><div class="wk-body"><div class="wk-title"><span class="chip easy">EASY</span>Easy 4.6 mi + strides <span class="done">✓</span></div><div class="wk-sub">8:51/mi · HR 148</div></div></li>
-          <li><div class="day"><b>Thu</b>29</div><div class="wk-body"><div class="wk-title"><span class="chip easy">EASY</span>Easy 4.1 mi <span class="done">✓</span></div><div class="wk-sub">9:14/mi · HR 141</div></div></li>
-          <li><div class="day"><b>Fri</b>30</div><div class="wk-body"><div class="wk-title"><span class="chip off">OFF</span>Recovery · hydrate <span class="done">✓</span></div></div></li>
-          <li><div class="day"><b>Sat</b>31</div><div class="wk-body"><div class="wk-title"><span class="chip easy">SHAKEOUT</span>Shakeout 2.3 mi + strides <span class="done">✓</span></div><div class="wk-sub">Legs loose, kit laid out — textbook prep.</div></div></li>
-          <li><div class="day"><b>Sun</b>1</div><div class="wk-body"><div class="wk-title"><span class="chip long">RACE</span>🏁 Golden Gate Half — 1:54:31 <span class="done">✓ PR</span></div><div class="wk-sub">13.18 mi · 8:41/mi · avg HR 165 — a 4-min PR, beat the 1:55 target</div></div></li>
-        </ul>
-      </div>
-      <div class="week">
-        <h3>Next up · Nov 2 – 8 <span>recovery week</span></h3>
-        <ul class="days">
-          <li><div class="day"><b>Mon</b>2</div><div class="wk-body"><div class="wk-title"><span class="chip off">OFF</span>Recovery · hydrate</div></div></li>
-          <li><div class="day"><b>Tue–Thu</b></div><div class="wk-body"><div class="wk-title"><span class="chip off">—</span>Nothing posted yet</div><div class="wk-sub">Chas usually loads 1–2 weeks out; may still fill in</div></div></li>
-          <li><div class="day"><b>Fri</b>6</div><div class="wk-body"><div class="wk-title"><span class="chip long">LONG</span>12 mi Easy 60%</div><div class="wk-sub">~2:01 planned · keep HR under ~145 · 5 days post-race</div></div></li>
-          <li><div class="day"><b>Sat–Sun</b></div><div class="wk-body"><div class="wk-title"><span class="chip off">—</span>Nothing posted yet</div></div></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Training load</h2><span class="note">race week · Strava</span></div>
-    <div class="stats">
-      <div class="stat"><div class="k">Race week total</div><div class="v">29.3<small> mi</small></div><div class="cx">5 runs · Oct 26 – Nov 1</div></div>
-      <div class="stat"><div class="k">Taper runs</div><div class="v">16.1<small> mi</small></div><div class="cx">4 runs · ~8:56/mi · HR ~143</div></div>
-      <div class="stat"><div class="k">Race load</div><div class="v">~175</div><div class="cx">1:54 at HR 165 · <span class="pill warn">recover</span></div></div>
-      <div class="stat"><div class="k">Next long run</div><div class="v">12.0<small> mi</small></div><div class="cx">Fri Nov 6 · easy 60%</div></div>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Recent races &amp; PRs</h2></div>
-    <div class="races">
-      <div class="race-row hero"><div class="rd">Nov 1<br>2026</div><div class="rn"><b>Golden Gate Half</b><div class="rx">New half PR by 4:07 · beat Chas&rsquo;s 1:55 target · ~780 ft climb</div></div><div class="rt">1:54:31<small>8:41/mi · HR 165</small></div></div>
-      <div class="race-row"><div class="rd">Jul 26<br>2026</div><div class="rn"><b>SF Half Marathon</b><div class="rx">First sub-2:00 — the previous PR</div></div><div class="rt">1:58:38<small>9:03/mi</small></div></div>
-      <div class="race-row"><div class="rd">May 17<br>2026</div><div class="rn"><b>Bay to Breakers 15K</b><div class="rx">Hilly · under-fueled</div></div><div class="rt">1:34:38<small>10:08/mi · HR 165</small></div></div>
-      <div class="race-row"><div class="rd">Mar 22<br>2026</div><div class="rn"><b>Oakland 10K</b><div class="rx">Same pace, lower HR — aerobic gain</div></div><div class="rt">57:25<small>9:14/mi · HR 157</small></div></div>
-      <div class="race-row"><div class="rd">Feb 1<br>2026</div><div class="rn"><b>SF Half 10K</b></div><div class="rt">58:00<small>9:14/mi · HR 166</small></div></div>
-      <div class="race-row"><div class="rd">Nov 27<br>2025</div><div class="rn"><b>Cleveland Turkey Trot 5mi</b><div class="rx">First race · rematch Nov 26</div></div><div class="rt">49:41<small>9:56/mi · HR 165</small></div></div>
-    </div>
-  </section>
-
-  <section class="fade">
-    <div class="sec-head"><h2>Open questions for Chas</h2><span class="note">raise these</span></div>
-    <div class="q">
-      <div class="qcard"><div class="qnum">1</div><div class="qbody"><div class="qt">Is 12 miles on Friday too soon after the race?</div><div class="qd">The plan has a 12-mile easy run on Nov 6, five days after a 1:54 race effort at HR 165. Ask Chas whether it should flex down (e.g., 8–10 mi) if your legs or HRV aren&rsquo;t back, and what training paces 1:54:31 translates to for the Vienna build.</div><span class="qtag">Recovery · this week</span></div></div>
-      <div class="qcard"><div class="qnum">2</div><div class="qbody"><div class="qt">How does the long run build toward 26.2?</div><div class="qd">Longest is now 14.3 mi &mdash; big progress. Need the ramp to a 20+ mi peak for Vienna: how high, how fast, and how it flexes around the Ohio trip (Nov 13–30).</div><span class="qtag">Endurance · first marathon</span></div></div>
-      <div class="qcard"><div class="qnum">3</div><div class="qbody"><div class="qt">Do you coach fueling?</div><div class="qd">The known weak point, more decisive at 26.2. Does Chas program in-run fueling + long-run practice? Either way — start rehearsing gels on long runs now.</div><span class="qtag">Nutrition · weak point</span></div></div>
-      <div class="qcard"><div class="qnum">4</div><div class="qbody"><div class="qt">TP threshold HR is 157, but Garmin says 170</div><div class="qd">TP&rsquo;s zones use a threshold HR of 157 bpm (Zone 4 = 152–161). You averaged 171 for two hours in the July half, so 157 is far too low for racing. The race-day HR caps here use 170. Ask Chas to retest or update the TP setting before Vienna paces get set. Also mention the optical-HR startup glitch.</div><span class="qtag">Heart rate · fix before the Vienna build</span></div></div>
-      <div class="qcard"><div class="qnum">5</div><div class="qbody"><div class="qt">When does strength come back, and how does it fit the Vienna build?</div><div class="qd">Templates have progressed (now Strength 3 &amp; 4). When does it restart after the race, how does it work around the Ohio trip (no Fitness SF), and what&rsquo;s the plan to keep it in once the long runs get big?</div><span class="qtag">Strength · coordination</span></div></div>
-    </div>
-  </section>
-
-  <footer class="fade">
-    <b>Sources:</b> Strava (runs, race, best efforts) · Garmin Fenix 8 via Kailo (HRV, resting HR, sleep through Nov 1; Kailo marathon projection) · TrainingPeaks (Fitness/Fatigue/Form tiles as of Oct 30; planned workouts via the TP calendar feed, coach Chas Hodgdon) · marathon-cohort benchmarks (Kailo research corpus). VO₂ max is a Garmin watch value.<br>
-    <b>How this stays current:</b> ask me to pull your latest workouts and I&rsquo;ll refresh this same dashboard in place — the link never changes.
-  </footer>
 </div>
 
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="kicker">Finding my stride · San Francisco</div>
+      <h1>A year ago I ran my first mile. Now I'm training for <span class="ac">twenty-six point two.</span></h1>
+      <p class="lede">I picked up running in September 2025. Somewhere along the way I lost more than <b>a hundred pounds</b> — but the running is what stayed. This is the road to my first marathon.</p>
+      <div class="hero-links">
+        <a class="lnk" href="#road">See the road to Vienna</a>
+        <a class="lnk ghost" href="#story">Read the story</a>
+      </div>
+    </div>
+    <div class="ring-card">
+      <div class="ring">
+        <svg viewBox="0 0 240 240" aria-hidden="true">
+          <circle cx="120" cy="120" r="104" fill="none" stroke="var(--line-2)" stroke-width="10"></circle>
+          <circle id="ringProg" cx="120" cy="120" r="104" fill="none" stroke="var(--accent)" stroke-width="10" stroke-linecap="round" stroke-dasharray="653" stroke-dashoffset="653"></circle>
+        </svg>
+        <div class="tnum"><div class="d" id="cd-days">—</div><div class="l">days to Vienna</div></div>
+      </div>
+      <div class="ring-cap">Journey <b id="pctText">—</b> complete · Sep '25 → Apr '27</div>
+    </div>
+  </div>
+</header>
+
+<section id="story">
+  <div class="wrap">
+    <div class="shead">
+      <div class="kicker">01 — The why</div>
+      <h2>I spent a long time on the <span class="ac">sidelines.</span></h2>
+    </div>
+    <div class="prose">
+      <p class="first">In 2025 I decided to stop sitting things out. No grand plan — just a pair of shoes and a short, ugly first run that I was certain the whole neighborhood could see. It was not graceful. I did it again the next day anyway.</p>
+      <p>The weight came off after that, more than a hundred pounds of it. But that turned out to be the side effect, not the point. What I actually found was the running itself: the quiet dark-morning miles, the start lines, the slow and stubborn proof that I can do hard things if I keep showing up for them.</p>
+      <p>The marathon is the next hard thing — more than double the furthest I had ever gone a year ago. So I'm doing it properly: a coach, a real plan, and every mile logged. Vienna, April 2027. Then we'll find out what comes after.</p>
+    </div>
+    <blockquote class="pullquote">The weight loss was the side effect. The running was the point.</blockquote>
+    <div class="ledger">
+      <div class="lcell"><div class="lv">100+ <small>lbs</small></div><div class="lk">Lost since the start</div></div>
+      <div class="lcell"><div class="lv" id="l-half">1:54:31</div><div class="lk">Half-marathon PR</div></div>
+      <div class="lcell"><div class="lv"><span id="l-long">14.3</span> <small>mi</small></div><div class="lk">Longest run, so far</div></div>
+      <div class="lcell"><div class="lv">26.2</div><div class="lk">The number that's left</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="road">
+  <div class="wrap">
+    <div class="shead">
+      <div class="kicker">02 — Race by race</div>
+      <h2>Every bib on the way to <span class="ac">the start line.</span></h2>
+    </div>
+    <div class="board">
+      <div class="race">
+        <div class="rdate">Nov 27, 2025 · Cleveland</div>
+        <div class="rbody"><div class="rname">Turkey Trot 5-Miler</div><div class="rdesc">The first bib. Had no idea what I was doing — finished anyway. This is where it starts.</div><div class="rmeta">5.0 mi · 9:56/mi · 165 bpm avg</div></div>
+        <div class="rres">49:41</div>
+      </div>
+      <div class="race">
+        <div class="rdate">Feb 1, 2026 · San Francisco</div>
+        <div class="rbody"><div class="rname">SF Half 10K</div><div class="rdesc">First 10K on a race course. The distance was growing right along with me.</div><div class="rmeta">6.2 mi · 9:14/mi · 166 bpm avg</div></div>
+        <div class="rres">58:00</div>
+      </div>
+      <div class="race">
+        <div class="rdate">Mar 22, 2026 · Oakland</div>
+        <div class="rbody"><div class="rname">Oakland Running Festival 10K</div><div class="rdesc">Same pace as February, nine fewer beats per minute. Quiet proof the engine was getting bigger.</div><div class="rmeta">6.2 mi · 9:14/mi · 157 bpm avg</div></div>
+        <div class="rres">57:25</div>
+      </div>
+      <div class="race">
+        <div class="rdate">May 17, 2026 · San Francisco</div>
+        <div class="rbody"><div class="rname">Bay to Breakers 15K</div><div class="rdesc">Hilly, loud, gloriously chaotic — nine-plus miles through the city I run in every day.</div><div class="rmeta">9.3 mi · 10:08/mi · 165 bpm avg</div></div>
+        <div class="rres">1:34:38</div>
+      </div>
+      <div class="race">
+        <div class="rdate">Jul 26, 2026 · San Francisco</div>
+        <div class="rbody"><div class="rname">SF Half Marathon <span class="tag">Sub-2:00</span></div><div class="rdesc">My first half under two hours — emptied the tank over the final three miles and crossed the line knowing the goal had just gotten bigger. The day the marathon became real.</div><div class="rmeta">13.1 mi · 9:03/mi · 171 bpm avg</div></div>
+        <div class="rres">1:58:38</div>
+      </div>
+      <div class="race pr">
+        <div class="rdate">Nov 1, 2026 · San Francisco</div>
+        <div class="rbody"><div class="rname">Golden Gate Half <span class="tag">New PR</span></div><div class="rdesc">Out over the Golden Gate Bridge and back, nearly 800 feet of climbing — and more than four minutes faster than July. Hit the goal time with 29 seconds to spare.</div><div class="rmeta">13.1 mi · 8:41/mi · 165 bpm avg · <a href="#raceday">photos</a></div></div>
+        <div class="rres">1:54:31</div>
+      </div>
+      <div class="race next">
+        <div class="rdate">Nov 26, 2026 · Cleveland</div>
+        <div class="rbody"><div class="rname">Turkey Trot 5-Miler <span class="tag">Up next</span></div><div class="rdesc">Back where it began, one year on. Same race, a very different runner.</div></div>
+        <div class="rres">5 mi</div>
+      </div>
+      <div class="race goal">
+        <div class="rdate">Apr 18, 2027 · Vienna</div>
+        <div class="rbody"><div class="rname">Vienna City Marathon <span class="tag">The goal</span></div><div class="rdesc">The full. Twenty-six point two miles, about nineteen months after my very first one. The whole road points here.</div></div>
+        <div class="rres">26.2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="raceday">
+  <div class="wrap">
+    <div class="shead">
+      <div class="kicker">03 — Golden Gate Half · Nov 1, 2026</div>
+      <h2>Four minutes faster, <span class="ac">over the bridge.</span></h2>
+    </div>
+    <div class="pr-strip">
+      <div class="hl"><b>1:54:31</b>Finish · new PR</div>
+      <div><b>−4:07</b>vs. July's half</div>
+      <div><b>8:41<small style="font-size:.6em">/mi</small></b>Average pace</div>
+      <div><b>~780 ft</b>Of climbing</div>
+    </div>
+    <div class="photos">
+      <figure><img src="img/gg-half-2026-crissy.jpg" alt="Tim running along Crissy Field in morning light during the Golden Gate Half, adjusting his sunglasses" loading="lazy" width="1200" height="1800"><figcaption>On the bay · <b>race morning</b></figcaption></figure>
+      <figure><img src="img/gg-half-2026-bridge.jpg" alt="Tim running past the Golden Gate Bridge during the Golden Gate Half" loading="lazy" width="1200" height="1800"><figcaption>Crissy Field · <b>the bridge behind</b></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="numbers">
+  <div class="wrap">
+    <div class="shead">
+      <div class="kicker">04 — Live from Garmin &amp; Strava</div>
+      <h2>The engine is still getting <span class="ac">faster.</span></h2>
+    </div>
+    <div class="num-grid">
+      <div class="chart-card">
+        <div class="ct">Marathon projection, this build</div>
+        <div class="cs">Garmin's predicted finish, trending down. Lower is faster.</div>
+        <div class="chart-box"><canvas id="projChart"></canvas></div>
+      </div>
+      <div>
+        <div class="stat-col">
+          <div class="statrow"><div class="sv"><span id="s-30mi">—</span> <small>mi</small></div><div class="sk" id="s-30k">Last 30 days</div></div>
+          <div class="statrow"><div class="sv"><span id="s-wk">—</span> <small>mi</small></div><div class="sk" id="s-wkk">Latest week</div></div>
+          <div class="statrow"><div class="sv"><span id="s-long">—</span> <small>mi</small></div><div class="sk">Longest run ever</div></div>
+          <div class="statrow"><div class="sv"><span id="s-pace">—</span> <small>/mi</small></div><div class="sk">Avg pace, 30 days</div></div>
+          <div class="statrow"><div class="sv" id="s-vo2">—</div><div class="sk">VO₂ max · 43 earlier in 2026</div></div>
+        </div>
+        <div class="src-note">Pulled straight from my own training data and<br>refreshed daily. Latest run: <span id="s-latest">—</span>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="fq">The work is the whole <span class="ac">point.</span></div>
+    <p>One pair of shoes in September 2025 became a half marathon, a hundred-plus pounds gone, and a start line in Austria on the calendar. Every number on this page is mine, straight from the watch.</p>
+    <div class="meta mono">The Road to Vienna · April 18, 2027 · Built from Garmin &amp; Strava · Updated <span id="f-upd">—</span></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-  var DATA, REC;
-  function init(){
+(function(){
+  "use strict";
+  var root=document.documentElement, tb=document.getElementById('themeBtn');
+  function sysDark(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;}
+  function curDark(){var a=root.getAttribute('data-theme');return a?a==='dark':sysDark();}
+  function syncBtn(){tb.textContent=curDark()?'Light':'Dark';}
+  tb.addEventListener('click',function(){root.setAttribute('data-theme',curDark()?'light':'dark');syncBtn();paintChart();});
+  syncBtn();
 
-  /* ---------- countdowns (live) ---------- */
-  (function(){
-    var MS=86400000; function db(a,b){return Math.round((b-a)/MS);}
-    var today=new Date(); today.setHours(0,0,0,0);
-    var vienna=new Date(2027,3,18), gg=new Date(2026,10,1), start=new Date(2025,8,1);
-    var vD=Math.max(0,db(today,vienna)), gD=Math.max(0,db(today,gg));
-    document.getElementById('v-days').innerHTML=vD+'<small> days</small>';
-    document.getElementById('v-meta').textContent=(vD/7).toFixed(0)+' weeks out · your first full marathon';
-    var jTot=db(start,vienna), jNow=db(start,today);
-    document.getElementById('v-bar').style.width=Math.max(0,Math.min(100,jNow/jTot*100)).toFixed(1)+'%';
-    var win=db(today,vienna); function pct(d){return Math.max(0,Math.min(100,db(today,d)/win*100));}
-    document.getElementById('n-tt').style.left=pct(new Date(2026,10,26)).toFixed(1)+'%';
-    document.getElementById('tl-fill').style.width='2%';
-  })();
-
-  /* ---------- static fills ---------- */
-  (function(){
-    document.getElementById('pbstrip').innerHTML = REC.pb.map(function(p){
-      return '<div class="pb"><div class="e">'+p.e+'</div><div class="t">'+p.t+'</div><div class="dt">'+p.dt+'</div></div>';
-    }).join('');
-    document.getElementById('runsBody').innerHTML = DATA.recent.map(function(r){
-      var md=r.d.slice(5).replace('-','/');
-      return '<tr><td>'+md+'</td><td>'+r.nm+'</td><td>'+r.mi.toFixed(1)+'</td><td>'+r.pace+'</td><td>'+r.hr+'</td><td><span class="tag '+r.k+'">'+r.k+'</span></td></tr>';
-    }).join('');
-  })();
-
-
-
-  /* ---------- charts ---------- */
-  var charts=[];
-  function P(){
-    var el=document.documentElement, dt=el.getAttribute('data-theme');
-    var dark = dt==='dark' || (dt!=='light' && window.matchMedia('(prefers-color-scheme:dark)').matches);
-    return dark
-      ? {ink:'#e9eef3',mut:'#9aa7b3',grid:'rgba(154,167,179,.16)',accent:'#f26a3e',blue:'#5aa9d6',green:'#4db27b',red:'#e35d4c',amber:'#d3a244',faint:'#67747f',fill:'rgba(242,106,62,.12)'}
-      : {ink:'#13202b',mut:'#586572',grid:'rgba(88,101,114,.14)',accent:'#d24a22',blue:'#2f6f97',green:'#2c8a57',red:'#c0392b',amber:'#a8791c',faint:'#8794a1',fill:'rgba(210,74,34,.10)'};
+  /* ---- countdown + journey ring ---- */
+  var start=new Date('2025-09-01T00:00:00-07:00').getTime();
+  var race=new Date('2027-04-18T09:00:00+02:00').getTime();
+  var C=2*Math.PI*104; // 653.45
+  function tick(){
+    var now=Date.now();
+    var days=Math.max(0,Math.ceil((race-now)/86400000));
+    document.getElementById('cd-days').textContent=days;
+    var pct=Math.min(1,Math.max(0,(now-start)/(race-start)));
+    document.getElementById('pctText').textContent=Math.round(pct*100)+'%';
+    var pc=document.getElementById('ringProg');
+    pc.setAttribute('stroke-dasharray',C.toFixed(1));
+    pc.setAttribute('stroke-dashoffset',(C*(1-pct)).toFixed(1));
   }
+  tick(); setInterval(tick,60000);
+
+  /* ---- projection trend line ---- */
+  var PTS=[];
+  var MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fdate(iso){var p=iso.split('-');return MO[+p[1]-1]+' '+(+p[2])+', '+p[0];}
   function mmss(v){var m=Math.floor(v),s=Math.round((v-m)*60);if(s===60){m++;s=0;}return m+':'+(s<10?'0':'')+s;}
-
-  function build(){
-    charts.forEach(function(c){c.destroy();}); charts=[];
-    var p=P();
-    Chart.defaults.font.family="'IBM Plex Sans',system-ui,sans-serif";
-    Chart.defaults.font.size=11;
-    Chart.defaults.color=p.mut;
-    var baseScale={grid:{color:p.grid,drawTicks:false},border:{display:false},ticks:{color:p.mut,padding:6}};
-    function opts(extra){return Object.assign({responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:p.ink,titleColor:'#fff',bodyColor:'#fff',padding:9,cornerRadius:8,displayColors:true,boxWidth:8,boxHeight:8}}},extra||{});}
-
-
-
-    // Fitness & Fatigue
-    var pmcL=DATA.pmc.map(function(x){return x.d.slice(5).replace('-','/');});
-    charts.push(new Chart(document.getElementById('ffChart'),{type:'line',
-      data:{labels:pmcL,datasets:[
-        {label:'Fitness (CTL)',data:DATA.pmc.map(function(x){return x.ctl;}),borderColor:p.blue,backgroundColor:'transparent',borderWidth:2.4,pointRadius:0,tension:.3},
-        {label:'Fatigue (ATL)',data:DATA.pmc.map(function(x){return x.atl;}),borderColor:p.red,backgroundColor:'transparent',borderWidth:1.8,pointRadius:0,tension:.3,borderDash:[4,3]}
-      ]},
-      options:opts({plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'line'}},tooltip:{backgroundColor:p.ink,titleColor:'#fff',bodyColor:'#fff',padding:9,cornerRadius:8}},scales:{x:Object.assign({},baseScale,{ticks:{color:p.mut,maxTicksLimit:7,autoSkip:true}}),y:Object.assign({},baseScale)}})
-    }));
-
-    // Form (TSB)
-    charts.push(new Chart(document.getElementById('formChart'),{type:'line',
-      data:{labels:pmcL,datasets:[{label:'Form (TSB)',data:DATA.pmc.map(function(x){return x.tsb;}),borderColor:p.green,backgroundColor:p.fill,borderWidth:2,fill:true,pointRadius:0,tension:.3}]},
-      options:opts({plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'line'}}},scales:{x:Object.assign({},baseScale,{ticks:{color:p.mut,maxTicksLimit:7,autoSkip:true}}),y:Object.assign({},baseScale,{grid:{color:function(c){return c.tick.value===0?p.mut:p.grid;}}})}})
-    }));
-
-    // Weekly mileage + trend
-    var wl=DATA.weeks.map(function(x){return x.w.slice(5).replace('-','/');});
-    charts.push(new Chart(document.getElementById('mileChart'),{
-      data:{labels:wl,datasets:[
-        {type:'bar',label:'Weekly miles',data:DATA.weeks.map(function(x){return x.mi;}),backgroundColor:p.accent,borderRadius:4,barPercentage:.68,categoryPercentage:.8},
-        {type:'line',label:'Trend',data:DATA.trend,borderColor:p.mut,borderWidth:1.6,borderDash:[5,4],pointRadius:0,tension:0}
-      ]},
-      options:opts({scales:{x:baseScale,y:Object.assign({},baseScale,{beginAtZero:true,title:{display:true,text:'miles',color:p.faint}})}})
-    }));
-
-    // Cohort
-    var cw=['16','15','14','13','12','11','10','9','8','7','6','5','4','3','2','1'];
-    var p25=[4.4,7.2,10,9.1,10.5,10.1,11,12.1,12.2,12.6,14.1,13.8,14.2,14.2,11.4,5.1];
-    var p50=[13.3,15.6,17.9,18.7,19.2,19.5,21,21.7,21.7,23.4,24.2,24.2,24.9,24,19.5,9.7];
-    var p75=[23.3,24.6,27.3,28.5,29.2,29.6,31.3,31.7,31.6,33.3,34.5,34.1,35.1,33.3,27.2,15.4];
-    charts.push(new Chart(document.getElementById('cohortChart'),{type:'line',
-      data:{labels:cw,datasets:[
-        {label:'p75',data:p75,borderColor:'transparent',backgroundColor:p.fill,fill:'+1',pointRadius:0,tension:.3},
-        {label:'p25',data:p25,borderColor:'transparent',backgroundColor:'transparent',fill:false,pointRadius:0,tension:.3},
-        {label:'Median (p50)',data:p50,borderColor:p.blue,borderWidth:2.2,pointRadius:0,tension:.3},
-        {label:'You now (~35 mi)',data:cw.map(function(){return 35;}),borderColor:p.accent,borderWidth:1.8,borderDash:[5,4],pointRadius:0}
-      ]},
-      options:opts({plugins:{legend:{display:true,position:'top',align:'end',labels:{boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'line',filter:function(i){return i.text!=='p25'&&i.text!=='p75';}}}},scales:{x:Object.assign({},baseScale,{title:{display:true,text:'weeks to race',color:p.faint},reverse:false}),y:Object.assign({},baseScale,{beginAtZero:true,title:{display:true,text:'miles/wk',color:p.faint}})}})
-    }));
-
-    // Recovery: HRV
-    charts.push(new Chart(document.getElementById('hrvChart'),{type:'line',
-      data:{labels:REC.hrv.d.map(function(d){return d.replace('-','/');}),datasets:[
-        {label:'daily',data:REC.hrv.v,borderColor:p.faint,borderWidth:1,pointRadius:0,tension:.25,spanGaps:true},
-        {label:'7-day avg',data:REC.hrv.roll,borderColor:p.green,backgroundColor:p.fill,borderWidth:2.2,pointRadius:0,tension:.3,fill:true}
-      ]},options:opts({scales:{x:Object.assign({},baseScale,{ticks:{color:p.mut,maxTicksLimit:5,autoSkip:true}}),y:baseScale}})
-    }));
-    // RHR
-    charts.push(new Chart(document.getElementById('rhrChart'),{type:'line',
-      data:{labels:REC.rhr.d.map(function(d){return d.replace('-','/');}),datasets:[
-        {label:'daily',data:REC.rhr.v,borderColor:p.faint,borderWidth:1,pointRadius:0,tension:.25},
-        {label:'7-day avg',data:REC.rhr.roll,borderColor:p.blue,borderWidth:2.2,pointRadius:0,tension:.3}
-      ]},options:opts({scales:{x:Object.assign({},baseScale,{ticks:{color:p.mut,maxTicksLimit:5,autoSkip:true}}),y:baseScale}})
-    }));
-    // Sleep
-    charts.push(new Chart(document.getElementById('sleepChart'),{type:'bar',
-      data:{labels:REC.sleep.d.map(function(d){return d.replace('-','/');}),datasets:[
-        {label:'hours',data:REC.sleep.h,backgroundColor:REC.sleep.h.map(function(h){return h>=7?p.green:(h>=6?p.amber:p.red);}),borderRadius:3,barPercentage:.8,categoryPercentage:.9}
-      ]},options:opts({plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:function(c){var s=REC.sleep.score[c.dataIndex];return s?('score '+s):'';}}}},scales:{x:Object.assign({},baseScale,{ticks:{color:p.mut,maxTicksLimit:6,autoSkip:true}}),y:Object.assign({},baseScale,{beginAtZero:true,suggestedMax:10})}})
-    }));
-
-    // VO2
-    charts.push(new Chart(document.getElementById('vo2Chart'),{type:'line',
-      data:{labels:REC.vo2.d,datasets:[{label:'VO₂ max',data:REC.vo2.v,borderColor:p.accent,backgroundColor:p.fill,borderWidth:2.4,pointRadius:4,pointBackgroundColor:p.accent,tension:.25,fill:true}]},
-      options:opts({scales:{x:baseScale,y:Object.assign({},baseScale,{suggestedMin:41,suggestedMax:51})}})
-    }));
-
-    // Pace scatter
-    function grp(ks){return DATA.scatter.filter(function(x){return ks.indexOf(x.k)>=0;}).map(function(x){return {x:x.pace,y:x.hr,nm:x.nm};});}
-    charts.push(new Chart(document.getElementById('paceChart'),{type:'scatter',
-      data:{datasets:[
-        {type:'line',label:'HR 145',data:[{x:7.4,y:145},{x:11,y:145}],borderColor:p.faint,borderWidth:1.2,borderDash:[5,4],pointRadius:0,pointHitRadius:0,fill:false,order:9},
-        {label:'Easy / long',data:grp(['Easy','Long']),backgroundColor:p.green,pointRadius:5,pointHoverRadius:7},
-        {label:'Workout',data:grp(['Workout']),backgroundColor:p.amber,pointRadius:5,pointHoverRadius:7},
-        {label:'Race',data:grp(['Race']),backgroundColor:p.red,pointRadius:7,pointStyle:'triangle',pointHoverRadius:9}
-      ]},
-      options:opts({plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.raw.nm+' — '+mmss(c.raw.x)+'/mi, HR '+c.raw.y;}}},annotation:{}},scales:{
-        x:Object.assign({},baseScale,{title:{display:true,text:'pace (min/mi) — faster ←',color:p.faint},ticks:{color:p.mut,callback:function(v){return mmss(v);}}}),
-        y:Object.assign({},baseScale,{title:{display:true,text:'avg HR',color:p.faint}})
-      }})
-    }));
+  function set(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+  function fill(j){
+    var D=j.data||{},R=j.rec||{},runs=D.scatter||[],upd=j.updated;
+    var cut=new Date(new Date(upd+'T12:00:00')-30*86400000).toISOString().slice(0,10);
+    var r30=runs.filter(function(r){return r.d>cut&&r.d<=upd;});
+    var mi=0,t=0;r30.forEach(function(r){mi+=r.mi;t+=r.mi*r.pace;});
+    set('s-30mi',Math.round(mi)); set('s-30k','Last 30 days · '+r30.length+' runs');
+    if(mi)set('s-pace',mmss(t/mi));
+    var wk=(D.weeks||[]).slice(-1)[0]; if(wk){set('s-wk',wk.mi.toFixed(1));set('s-wkk','Week of '+fdate(wk.w).replace(/, \d{4}$/,''));}
+    var lng=runs.reduce(function(m,r){return Math.max(m,r.mi);},0); if(lng){set('s-long',lng.toFixed(1));set('l-long',lng.toFixed(1));}
+    var v=(R.vo2&&R.vo2.v)||[]; if(v.length)set('s-vo2',v[v.length-1]);
+    var h=(R.pb||[]).filter(function(p){return p.e==='Half';})[0]; if(h)set('l-half',h.t);
+    var lr=(D.recent||[])[0]; if(lr)set('s-latest',fdate(lr.d));
+    if(upd)set('f-upd',fdate(upd));
+    if(j.proj&&j.proj.length){PTS=j.proj;paintChart();}
   }
-
-  if(window.Chart){build();}
-  else{window.addEventListener('load',function(){if(window.Chart)build();});}
-  window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(){if(window.Chart)build();});
-  new MutationObserver(function(){if(window.Chart)build();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  fetch('data.json',{cache:'no-store'}).then(function(r){return r.json();}).then(fill).catch(function(){});
+  var chart=null;
+  function cssv(n){return getComputedStyle(root).getPropertyValue(n).trim();}
+  function paintChart(){
+    if(typeof Chart==='undefined'||!PTS.length)return;
+    var ink=cssv('--ink'),muted=cssv('--muted'),line=cssv('--line'),accent=cssv('--accent'),panel=cssv('--panel');
+    if(chart)chart.destroy();
+    var ctx=document.getElementById('projChart').getContext('2d');
+    var grad=ctx.createLinearGradient(0,0,0,230);
+    grad.addColorStop(0,accent+'44'); grad.addColorStop(1,accent+'00');
+    chart=new Chart(ctx,{
+      type:'line',
+      data:{labels:PTS.map(function(p){return p.t;}),
+        datasets:[{data:PTS.map(function(p){return p.min;}),
+          borderColor:accent,borderWidth:2.5,fill:true,backgroundColor:grad,
+          tension:.32,pointBackgroundColor:accent,pointBorderColor:panel,pointBorderWidth:2,
+          pointRadius:PTS.map(function(p,i){return i===PTS.length-1?6:4;})}]},
+      options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:26,right:10,left:4}},
+        plugins:{legend:{display:false},
+          tooltip:{callbacks:{label:function(c){return PTS[c.dataIndex].lab+' marathon';}}}},
+        scales:{
+          x:{grid:{display:false},ticks:{color:muted,font:{family:"'IBM Plex Mono',monospace",size:11}},border:{color:line}},
+          y:{reverse:true,suggestedMin:230,suggestedMax:262,grid:{color:line},
+             ticks:{color:muted,font:{family:"'IBM Plex Mono',monospace",size:11},
+               stepSize:10,callback:function(v){var h=Math.floor(v/60),m=v%60;return h+':'+(m<10?'0':'')+m;}},
+             border:{display:false}}},
+        animation:{duration:700}}
+    });
   }
-  fetch('data.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){
-    DATA=j.data; REC=j.rec; init();
-  }).catch(function(e){document.querySelector('.wrap').insertAdjacentHTML('afterbegin','<div class="callout"><b>Couldn&rsquo;t load data.json.</b> '+e+'</div>');});
+  var labelPlugin={id:'plabels',afterDatasetsDraw:function(c){
+    var ctx=c.ctx;ctx.save();
+    ctx.font="600 12px 'IBM Plex Mono',monospace";ctx.fillStyle=cssv('--ink');ctx.textAlign='center';
+    c.getDatasetMeta(0).data.forEach(function(pt,i){ctx.fillText(PTS[i].lab,pt.x,pt.y-13);});
+    ctx.restore();
+  }};
+  if(typeof Chart!=='undefined')Chart.register(labelPlugin);
+  paintChart();
+  window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(){if(!root.getAttribute('data-theme')){syncBtn();paintChart();}});
+})();
+</script>
+<script>
+/* Real GPS route traces (Garmin via Kailo), drawn as a faint background field. Flat [lat,lng,...]. */
+(function(){
+  var R={
+    lon:[51.49509,-0.19022,51.49678,-0.18909,51.49836,-0.18826,51.50037,-0.18789,51.50209,-0.18695,51.50401,-0.18627,51.50583,-0.18600,51.50778,-0.18684,51.50970,-0.18762,51.51017,-0.18453,51.51048,-0.18106,51.51082,-0.17785,51.51139,-0.17474,51.51082,-0.17228,51.50929,-0.17056,51.50730,-0.17043,51.50632,-0.17261,51.50455,-0.17370,51.50275,-0.17474,51.50364,-0.17420,51.50542,-0.17301,51.50652,-0.17130,51.50806,-0.17014,51.51000,-0.17039,51.51141,-0.17173,51.51154,-0.16861,51.51193,-0.16559,51.51214,-0.16256,51.51172,-0.15963,51.51017,-0.15795,51.50843,-0.15668,51.50671,-0.15523,51.50502,-0.15380,51.50325,-0.15261,51.50266,-0.14957,51.50258,-0.14637,51.50247,-0.14326,51.50265,-0.13994,51.50337,-0.13729,51.50437,-0.13469,51.50543,-0.13216,51.50559,-0.13117,51.50455,-0.13364,51.50349,-0.13599,51.50245,-0.13847,51.50100,-0.13913,51.50065,-0.13681,51.50094,-0.13386,51.50120,-0.13087,51.50247,-0.12979,51.50421,-0.12917,51.50563,-0.13064,51.50525,-0.13274,51.50425,-0.13513,51.50333,-0.13754,51.50358,-0.13960,51.50519,-0.14102,51.50636,-0.14188,51.50582,-0.14404,51.50461,-0.14637,51.50340,-0.14858,51.50276,-0.15085,51.50321,-0.15361,51.50291,-0.15670,51.50265,-0.15966,51.50248,-0.16258,51.50230,-0.16535,51.50243,-0.16812,51.50239,-0.17104,51.50240,-0.17389,51.50365,-0.17483,51.50312,-0.17760,51.50283,-0.18041,51.50244,-0.18315,51.50292,-0.18471,51.50408,-0.18524,51.50559,-0.18474,51.50670,-0.18293,51.50671,-0.18006,51.50604,-0.17820,51.50428,-0.17793,51.50315,-0.17842,51.50275,-0.18104,51.50229,-0.18393,51.50277,-0.18646,51.50138,-0.18713,51.49984,-0.18795,51.49799,-0.18826,51.49674,-0.18902,51.49566,-0.18953],
+    phl:[39.95167,-75.16872,39.95174,-75.17198,39.95044,-75.17321,39.95085,-75.17610,39.95113,-75.17904,39.95065,-75.18140,39.94901,-75.18342,39.94742,-75.18560,39.94563,-75.18748,39.94687,-75.18643,39.94844,-75.18420,39.95003,-75.18203,39.95205,-75.18074,39.95419,-75.17969,39.95635,-75.17887,39.95860,-75.17875,39.96085,-75.17957,39.96290,-75.18099,39.96469,-75.18276,39.96684,-75.18330,39.96866,-75.18484,39.96962,-75.18712,39.97022,-75.18996,39.97247,-75.19017,39.97459,-75.19134,39.97651,-75.19299,39.97825,-75.19496,39.97979,-75.19720,39.98094,-75.19976,39.98242,-75.20205,39.98440,-75.20342,39.98613,-75.20155,39.98785,-75.19956,39.98964,-75.19767,39.99161,-75.19606,39.99303,-75.19372,39.99501,-75.19222,39.99715,-75.19115,39.99941,-75.19071,40.00170,-75.19047,40.00398,-75.19074,40.00621,-75.19146,40.00782,-75.19354,40.00886,-75.19624,40.00978,-75.19901,40.01069,-75.20195,40.01160,-75.20469,40.01332,-75.20671,40.01503,-75.20750,40.01596,-75.21021,40.01513,-75.20789,40.01368,-75.20678,40.01187,-75.20504,40.01085,-75.20241,40.01004,-75.19956,40.00905,-75.19665,40.00801,-75.19398,40.00654,-75.19166,40.00437,-75.19078,40.00209,-75.19038,39.99980,-75.19068,39.99752,-75.19105,39.99532,-75.19197,39.99331,-75.19337,39.99187,-75.19568,39.98994,-75.19733,39.98815,-75.19925,39.98637,-75.20114,39.98479,-75.20326,39.98273,-75.20239,39.98114,-75.20020,39.98006,-75.19752,39.97853,-75.19529,39.97681,-75.19332,39.97492,-75.19171,39.97290,-75.19035,39.97060,-75.19016,39.96973,-75.18769,39.96897,-75.18492,39.96698,-75.18342,39.96485,-75.18269,39.96392,-75.18089,39.96448,-75.17988,39.96276,-75.17849,39.96153,-75.17605,39.95981,-75.17375,39.95819,-75.17152,39.95692,-75.16949,39.95511,-75.16788,39.95235,-75.16902],
+    dc:[38.90267,-77.06117,38.90239,-77.06008,38.90239,-77.05883,38.90233,-77.05758,38.90140,-77.05741,38.90043,-77.05717,38.89947,-77.05711,38.89869,-77.05655,38.89773,-77.05654,38.89675,-77.05664,38.89575,-77.05665,38.89480,-77.05660,38.89384,-77.05625,38.89291,-77.05587,38.89215,-77.05503,38.89138,-77.05441,38.89065,-77.05359,38.89017,-77.05249,38.89002,-77.05128,38.89040,-77.05011,38.88983,-77.04915,38.88982,-77.04789,38.88984,-77.04665,38.88986,-77.04538,38.88987,-77.04412,38.88990,-77.04287,38.88992,-77.04162,38.89010,-77.04041,38.88992,-77.03912,38.88993,-77.03787,38.89003,-77.03663,38.89050,-77.03557,38.89041,-77.03435,38.88996,-77.03327,38.89031,-77.03205,38.89032,-77.03081,38.89032,-77.02952,38.89034,-77.02828,38.89036,-77.02701,38.89018,-77.02598,38.88990,-77.02493,38.88992,-77.02367,38.88992,-77.02243,38.88994,-77.02116,38.88997,-77.01990,38.88997,-77.01866,38.88997,-77.01836,38.88996,-77.01961,38.88996,-77.02086,38.88996,-77.02213,38.88994,-77.02339,38.88992,-77.02463,38.88993,-77.02590,38.88990,-77.02714,38.88989,-77.02838,38.88989,-77.02964,38.89029,-77.03054,38.89032,-77.03197,38.88999,-77.03315,38.89036,-77.03416,38.89057,-77.03538,38.89017,-77.03650,38.88995,-77.03768,38.88992,-77.03894,38.88999,-77.04016,38.88988,-77.04136,38.88987,-77.04261,38.88986,-77.04387,38.88984,-77.04512,38.88983,-77.04639,38.88982,-77.04762,38.88980,-77.04888,38.89039,-77.05005,38.89006,-77.05117,38.88987,-77.05233,38.89035,-77.05342,38.89103,-77.05434,38.89188,-77.05491,38.89273,-77.05563,38.89359,-77.05612,38.89453,-77.05653,38.89549,-77.05665,38.89647,-77.05665,38.89745,-77.05658,38.89843,-77.05650,38.89923,-77.05717,38.90017,-77.05707,38.90110,-77.05742,38.90208,-77.05738,38.90271,-77.05816],
+    cle:[41.50505,-81.69260,41.50530,-81.69212,41.50569,-81.69133,41.50610,-81.69049,41.50657,-81.68956,41.50708,-81.68859,41.50753,-81.68760,41.50798,-81.68665,41.50842,-81.68570,41.50885,-81.68478,41.50932,-81.68380,41.50886,-81.68297,41.50912,-81.68212,41.50943,-81.68117,41.50874,-81.68065,41.50820,-81.68148,41.50763,-81.68185,41.50693,-81.68119,41.50625,-81.68060,41.50554,-81.68002,41.50479,-81.67946,41.50397,-81.67925,41.50313,-81.67909,41.50233,-81.67892,41.50149,-81.67876,41.50065,-81.67863,41.49986,-81.67849,41.49906,-81.67834,41.49825,-81.67818,41.49772,-81.67885,41.49728,-81.67975,41.49681,-81.68065,41.49632,-81.68157,41.49585,-81.68253,41.49540,-81.68345,41.49494,-81.68435,41.49450,-81.68528,41.49408,-81.68621,41.49364,-81.68705,41.49314,-81.68785,41.49264,-81.68862,41.49215,-81.68937,41.49168,-81.69010,41.49117,-81.69089,41.49067,-81.69166,41.49016,-81.69244,41.48966,-81.69322,41.48916,-81.69398,41.48865,-81.69478,41.48816,-81.69553,41.48762,-81.69637,41.48707,-81.69720,41.48660,-81.69809,41.48620,-81.69902,41.48579,-81.69991,41.48539,-81.70081,41.48505,-81.70158,41.48474,-81.70223,41.48431,-81.70318,41.48481,-81.70384,41.48547,-81.70432,41.48615,-81.70483,41.48684,-81.70535,41.48752,-81.70593,41.48829,-81.70628,41.48911,-81.70652,41.48995,-81.70679,41.49076,-81.70702,41.49157,-81.70702,41.49203,-81.70624,41.49239,-81.70564,41.49290,-81.70489,41.49344,-81.70415,41.49397,-81.70342,41.49449,-81.70255,41.49506,-81.70172,41.49563,-81.70090,41.49620,-81.70012,41.49675,-81.69933,41.49742,-81.69908,41.49810,-81.69966,41.49877,-81.70029,41.49946,-81.70092,41.50016,-81.70150,41.50081,-81.70207,41.50117,-81.70086,41.50138,-81.69987,41.50180,-81.69894,41.50230,-81.69798,41.50284,-81.69701],
+    sf:[37.77429,-122.42087,37.77590,-122.42103,37.77750,-122.42135,37.77889,-122.42125,37.78019,-122.42053,37.78177,-122.42085,37.78339,-122.42113,37.78496,-122.42146,37.78667,-122.42178,37.78824,-122.42212,37.78984,-122.42244,37.79146,-122.42277,37.79305,-122.42307,37.79465,-122.42340,37.79607,-122.42337,37.79768,-122.42366,37.79926,-122.42402,37.80086,-122.42429,37.80217,-122.42493,37.80208,-122.42693,37.80177,-122.42892,37.80153,-122.43095,37.80133,-122.43295,37.80107,-122.43493,37.80082,-122.43691,37.80053,-122.43892,37.80029,-122.44088,37.80005,-122.44290,37.79979,-122.44488,37.80019,-122.44665,37.80143,-122.44773,37.80246,-122.44687,37.80405,-122.44720,37.80522,-122.44766,37.80491,-122.44966,37.80465,-122.45165,37.80440,-122.45366,37.80413,-122.45565,37.80388,-122.45765,37.80362,-122.45966,37.80299,-122.46141,37.80320,-122.46341,37.80344,-122.46545,37.80377,-122.46741,37.80513,-122.46843,37.80669,-122.46888,37.80805,-122.47000,37.80876,-122.47172,37.80900,-122.47371,37.80928,-122.47572,37.81064,-122.47652,37.80946,-122.47610,37.80904,-122.47416,37.80887,-122.47218,37.80826,-122.47033,37.80701,-122.46910,37.80571,-122.46797,37.80485,-122.46629,37.80458,-122.46430,37.80466,-122.46226,37.80476,-122.46028,37.80503,-122.45826,37.80530,-122.45626,37.80556,-122.45425,37.80595,-122.45232,37.80622,-122.45033,37.80654,-122.44833,37.80530,-122.44723,37.80640,-122.43857,37.80664,-122.43654,37.80581,-122.43487,37.80524,-122.43304,37.80489,-122.43131,37.80598,-122.43004,37.80742,-122.42924,37.80809,-122.42755,37.80723,-122.42621,37.80654,-122.42442,37.80719,-122.42264,37.80765,-122.42072,37.80790,-122.41872,37.80819,-122.41673,37.80839,-122.41474,37.80867,-122.41275,37.80865,-122.41080,37.80821,-122.40892,37.80751,-122.40711,37.80671,-122.40535,37.80571,-122.40376,37.80460,-122.40232,37.80337,-122.40105,37.80205,-122.39987,37.80075,-122.39866,37.79943,-122.39752,37.79814,-122.39632,37.79685,-122.39512,37.79550,-122.39399,37.79425,-122.39280,37.79309,-122.39142,37.79193,-122.39006,37.79061,-122.38890,37.78912,-122.38780,37.78754,-122.38758,37.78592,-122.38768,37.78433,-122.38786,37.78272,-122.38797,37.78115,-122.38778,37.77955,-122.38763,37.77812,-122.38806,37.77743,-122.38988,37.77617,-122.39006,37.77506,-122.39152,37.77390,-122.39281,37.77268,-122.39397,37.77155,-122.39540,37.77029,-122.39659,37.76954,-122.39831,37.77010,-122.39971,37.77004,-122.40147,37.76972,-122.40338,37.76963,-122.40539,37.76938,-122.40732,37.76933,-122.40950,37.76963,-122.41160,37.76995,-122.41340,37.77094,-122.41486,37.77171,-122.41663,37.77261,-122.41834,37.77346,-122.41931,37.77418,-122.42091]
+  };
+  var layout=[['lon',520,230,440,-12],['phl',1080,280,360,13],['sf',800,560,660,-5],['dc',1150,780,300,16],['cle',430,820,320,9]];
+  var VBW=1600,VBH=1060,ns='http://www.w3.org/2000/svg';
+  function pth(a,size){var n=a.length/2,ml=0,i;for(i=0;i<a.length;i+=2)ml+=a[i];ml/=n;var k=Math.cos(ml*Math.PI/180);var xs=[],ys=[];for(i=0;i<a.length;i+=2){xs.push(a[i+1]*k);ys.push(-a[i]);}var mnx=Math.min.apply(null,xs),mxx=Math.max.apply(null,xs),mny=Math.min.apply(null,ys),mxy=Math.max.apply(null,ys);var w=mxx-mnx||1,h=mxy-mny||1,s=size/Math.max(w,h),cx=(mnx+mxx)/2,cy=(mny+mxy)/2,P=[];for(i=0;i<xs.length;i++)P.push([(xs[i]-cx)*s,(ys[i]-cy)*s]);var d='M'+P[0][0].toFixed(1)+' '+P[0][1].toFixed(1);for(i=0;i<P.length-1;i++){var p0=P[i>0?i-1:0],p1=P[i],p2=P[i+1],p3=P[i+2<P.length?i+2:i+1];var c1x=p1[0]+(p2[0]-p0[0])/6,c1y=p1[1]+(p2[1]-p0[1])/6,c2x=p2[0]-(p3[0]-p1[0])/6,c2y=p2[1]-(p3[1]-p1[1])/6;d+='C'+c1x.toFixed(1)+' '+c1y.toFixed(1)+' '+c2x.toFixed(1)+' '+c2y.toFixed(1)+' '+p2[0].toFixed(1)+' '+p2[1].toFixed(1);}return d;}
+  var svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox','0 0 '+VBW+' '+VBH);
+  svg.setAttribute('preserveAspectRatio','xMidYMid slice');
+  layout.forEach(function(L){var p=document.createElementNS(ns,'path');p.setAttribute('d',pth(R[L[0]],L[3]));p.setAttribute('transform','translate('+L[1]+' '+L[2]+') rotate('+L[4]+')');svg.appendChild(p);});
+  var host=document.getElementById('routebg'); if(host) host.appendChild(svg);
+})();
 </script>
 </body>
 </html>
