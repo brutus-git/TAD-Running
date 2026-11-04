@@ -124,6 +124,14 @@ section{padding-block:clamp(54px,8vw,92px);border-bottom:1px solid var(--line)}
 .lcell .lv small{font-size:.78rem;font-weight:600;color:var(--muted)}
 .lcell .lk{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:11px;line-height:1.4}
 
+/* under-construction stamp over the story text */
+.wip{position:relative}
+.wip-dim{opacity:.16;filter:blur(2.4px);user-select:none;pointer-events:none}
+.stamp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.stamp svg{width:min(560px,92%);height:auto;color:var(--accent);transform:rotate(-8deg);opacity:1;mix-blend-mode:normal}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .stamp svg{mix-blend-mode:multiply}}
+:root[data-theme="light"] .stamp svg{mix-blend-mode:multiply}
+
 /* ---------- race board ---------- */
 .board{display:flex;flex-direction:column;border-top:1px solid var(--line-2)}
 .race{display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:baseline;padding:22px 2px;border-bottom:1px solid var(--line);position:relative}
@@ -243,12 +251,37 @@ html{scroll-behavior:smooth}
       <div class="kicker">01 — The why</div>
       <h2>I spent a long time on the <span class="ac">sidelines.</span></h2>
     </div>
+    <div class="wip">
+    <div class="wip-dim" aria-hidden="true">
     <div class="prose">
       <p class="first">In 2025 I decided to stop sitting things out. No grand plan — just a pair of shoes and a short, ugly first run that I was certain the whole neighborhood could see. It was not graceful. I did it again the next day anyway.</p>
       <p>The weight came off after that, more than a hundred pounds of it. But that turned out to be the side effect, not the point. What I actually found was the running itself: the quiet dark-morning miles, the start lines, the slow and stubborn proof that I can do hard things if I keep showing up for them.</p>
       <p>The marathon is the next hard thing — more than double the furthest I had ever gone a year ago. So I'm doing it properly: a coach, a real plan, and every mile logged. Vienna, April 2027. Then we'll find out what comes after.</p>
     </div>
     <blockquote class="pullquote">The weight loss was the side effect. The running was the point.</blockquote>
+    </div>
+    <div class="stamp" role="img" aria-label="Under construction: this story is being rewritten">
+      <svg viewBox="0 0 520 230" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="grit" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="7" result="n"/>
+            <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.3 1.5" result="m"/>
+            <feComposite in="SourceGraphic" in2="m" operator="in" result="g"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3" result="w"/>
+            <feDisplacementMap in="g" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </defs>
+        <g filter="url(#grit)" fill="none" stroke="currentColor">
+          <rect x="10" y="10" width="500" height="210" rx="14" stroke-width="11"/>
+          <rect x="26" y="26" width="468" height="178" rx="8" stroke-width="3"/>
+          <text x="260" y="104" text-anchor="middle" fill="currentColor" stroke="none" font-family="'IBM Plex Mono',ui-monospace,monospace" font-weight="600" font-size="64" letter-spacing="8" textLength="300" lengthAdjust="spacingAndGlyphs">UNDER</text>
+          <text x="260" y="160" text-anchor="middle" fill="currentColor" stroke="none" font-family="'IBM Plex Mono',ui-monospace,monospace" font-weight="600" font-size="40" letter-spacing="4" textLength="420" lengthAdjust="spacingAndGlyphs">CONSTRUCTION</text>
+          <line x1="70" y1="180" x2="450" y2="180" stroke-width="2.5"/>
+          <text x="260" y="198" text-anchor="middle" fill="currentColor" stroke="none" font-family="'IBM Plex Mono',ui-monospace,monospace" font-weight="500" font-size="13" letter-spacing="3" textLength="380" lengthAdjust="spacingAndGlyphs">STORY BEING REWRITTEN · CHECK BACK SOON</text>
+        </g>
+      </svg>
+    </div>
+    </div>
     <div class="ledger">
       <div class="lcell"><div class="lv">100+ <small>lbs</small></div><div class="lk">Lost since the start</div></div>
       <div class="lcell"><div class="lv" id="l-half">1:54:31</div><div class="lk">Half-marathon PR</div></div>
