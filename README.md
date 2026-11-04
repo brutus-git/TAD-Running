@@ -1,14 +1,19 @@
-# Vienna Marathon Build — training dashboard
+# Vienna Marathon training site
 
-Tim's personal training dashboard for the Vienna City Marathon (April 18, 2027).
-It's a single self-contained web page (`index.html`) published with GitHub Pages.
+Two pages for Tim's build to the Vienna City Marathon (April 18, 2027), published with GitHub Pages.
+Both read the same `data.json`, so one refresh updates both.
+
+- **`index.html`** — *Vienna Marathon Build*, the detailed personal dashboard (load, recovery, plan, questions for the coach).
+- **`road-to-vienna.html`** — *The Road to Vienna*, the shareable story page (story, race board, race-day photos, headline numbers).
 
 ## What's in this repo
 
 | File | What it is |
 |------|------------|
-| `index.html` | The page itself: layout, styles, charts and the written commentary. |
-| `data.json` | The numbers: runs, weekly mileage, fitness/fatigue, HRV, resting HR, sleep, PBs. The page reads this when it opens. |
+| `index.html` | The personal dashboard: layout, styles, charts and the written commentary. |
+| `road-to-vienna.html` | The public story page. Its story text and race descriptions are written by hand; its numbers come from `data.json`. |
+| `img/` | Race photos used on the story page (resized, metadata stripped). |
+| `data.json` | The numbers: runs, weekly mileage, fitness/fatigue, HRV, resting HR, sleep, PBs, marathon-projection trend (`proj`). Both pages read it when they open. |
 | `.nojekyll` | An empty file that tells GitHub Pages to serve the page as-is. |
 | `README.md` | This file. |
 
