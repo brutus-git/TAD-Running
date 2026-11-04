@@ -15,7 +15,7 @@
     --ground:#eaeef2; --surface:#ffffff; --surface-2:#f4f7f9;
     --ink:#13202b; --muted:#586572; --faint:#8794a1;
     --border:#e0e6ec; --border-strong:#ccd5dd;
-    --accent:#d24a22; --accent-ink:#b23a17; --accent-soft:#fbe9e2;
+    --accent:#bb0000; --accent-ink:#990000; --accent-soft:#f6dcdc;
     --good:#2c8a57; --good-bg:#e4f1ea;
     --warn:#a8791c; --warn-bg:#f6eeda;
     --crit:#c0392b; --crit-bg:#f7e5e2;
@@ -28,7 +28,7 @@
       --ground:#0e141a; --surface:#161e26; --surface-2:#1d2831;
       --ink:#e9eef3; --muted:#9aa7b3; --faint:#67747f;
       --border:#28333d; --border-strong:#34404b;
-      --accent:#f26a3e; --accent-ink:#f5865f; --accent-soft:#2a1a12;
+      --accent:#e02435; --accent-ink:#f0505e; --accent-soft:#2a0d10;
       --good:#4db27b; --good-bg:#15281f;
       --warn:#d3a244; --warn-bg:#2a2314;
       --crit:#e35d4c; --crit-bg:#2c1714;
@@ -40,7 +40,7 @@
     --ground:#0e141a; --surface:#161e26; --surface-2:#1d2831;
     --ink:#e9eef3; --muted:#9aa7b3; --faint:#67747f;
     --border:#28333d; --border-strong:#34404b;
-    --accent:#f26a3e; --accent-ink:#f5865f; --accent-soft:#2a1a12;
+    --accent:#e02435; --accent-ink:#f0505e; --accent-soft:#2a0d10;
     --good:#4db27b; --good-bg:#15281f;
     --warn:#d3a244; --warn-bg:#2a2314;
     --crit:#e35d4c; --crit-bg:#2c1714;
@@ -248,7 +248,7 @@
     <div class="tl-track">
       <div class="tl-fill" id="tl-fill" style="width:0%"></div>
       <div class="tl-node done" style="left:0%"><div class="tl-dot"></div><div class="tl-cap"><span class="t">GG Half ✓</span><span class="d">Nov 1</span></div></div>
-      <div class="tl-node" id="n-tt" style="left:38%"><div class="tl-dot"></div><div class="tl-cap"><span class="t">Turkey Trot</span><span class="d">Nov 26</span></div></div>
+      <div class="tl-node flip" id="n-tt" style="left:38%"><div class="tl-dot"></div><div class="tl-cap"><span class="t">Turkey Trot</span><span class="d">Nov 26</span></div></div>
       <div class="tl-node goal flip" style="left:100%"><div class="tl-dot"></div><div class="tl-cap"><span class="t">Vienna 🏁</span><span class="d">Apr 18</span></div></div>
     </div>
   </div>
@@ -484,8 +484,8 @@
     var el=document.documentElement, dt=el.getAttribute('data-theme');
     var dark = dt==='dark' || (dt!=='light' && window.matchMedia('(prefers-color-scheme:dark)').matches);
     return dark
-      ? {ink:'#e9eef3',mut:'#9aa7b3',grid:'rgba(154,167,179,.16)',accent:'#f26a3e',blue:'#5aa9d6',green:'#4db27b',red:'#e35d4c',amber:'#d3a244',faint:'#67747f',fill:'rgba(242,106,62,.12)'}
-      : {ink:'#13202b',mut:'#586572',grid:'rgba(88,101,114,.14)',accent:'#d24a22',blue:'#2f6f97',green:'#2c8a57',red:'#c0392b',amber:'#a8791c',faint:'#8794a1',fill:'rgba(210,74,34,.10)'};
+      ? {ink:'#e9eef3',mut:'#9aa7b3',grid:'rgba(154,167,179,.16)',accent:'#e02435',blue:'#5aa9d6',green:'#4db27b',red:'#e35d4c',amber:'#d3a244',faint:'#67747f',fill:'rgba(224,36,53,.12)'}
+      : {ink:'#13202b',mut:'#586572',grid:'rgba(88,101,114,.14)',accent:'#bb0000',blue:'#2f6f97',green:'#2c8a57',red:'#c0392b',amber:'#a8791c',faint:'#8794a1',fill:'rgba(187,0,0,.10)'};
   }
   function mmss(v){var m=Math.floor(v),s=Math.round((v-m)*60);if(s===60){m++;s=0;}return m+':'+(s<10?'0':'')+s;}
 
