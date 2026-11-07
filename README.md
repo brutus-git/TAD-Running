@@ -4,14 +4,14 @@ Two pages for Tim's build to the Vienna City Marathon (April 18, 2027), publishe
 Both read the same `data.json`, so one refresh updates both.
 
 - **`index.html`** — *The Road to Vienna*, the shareable story page at the site's main address (story, race board, race-day photos, headline numbers).
-- **`TAD-Training-Dashboard.html`** — *Vienna Marathon Build*, the detailed personal dashboard (load, recovery, plan, questions for the coach). It isn't linked from the public page.
+- **`TAD-Training-Dashboard-x6j9szpy.html`** — *Vienna Marathon Build*, the detailed personal dashboard (load, recovery, plan, questions for the coach). It isn't linked from the public page.
 
 ## What's in this repo
 
 | File | What it is |
 |------|------------|
 | `index.html` | The public story page. Its story text and race descriptions are written by hand; its numbers come from `data.json`. |
-| `TAD-Training-Dashboard.html` | The personal dashboard: layout, styles, charts and the written commentary. |
+| `TAD-Training-Dashboard-x6j9szpy.html` | The personal dashboard: layout, styles, charts and the written commentary. |
 | `img/` | Race photos used on the story page (resized, metadata stripped). |
 | `data.json` | The numbers: runs, weekly mileage, fitness/fatigue, HRV, resting HR, sleep, PBs, marathon-projection trend (`proj`). Both pages read it when they open. |
 | `.nojekyll` | An empty file that tells GitHub Pages to serve the page as-is. |
