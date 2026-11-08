@@ -1,0 +1,200 @@
+{
+ "updated": "2026-11-07",
+ "generated_at": "2026-11-08T04:40:53Z",
+ "night": "2026-11-07",
+ "synced": true,
+ "score": 18,
+ "band": "Clear",
+ "used": 2,
+ "flags": 1,
+ "raw": 0.3005,
+ "mult": 0.6,
+ "advice": "Train as planned today.",
+ "two_high": false,
+ "prior": {
+  "night": "2026-11-06",
+  "score": 30,
+  "band": "Watch",
+  "used": 2,
+  "flags": 1,
+  "raw": 0.501,
+  "mult": 0.6
+ },
+ "metrics": [
+  {
+   "key": "rhr",
+   "name": "Resting heart rate",
+   "unit": "bpm",
+   "weight": 30,
+   "range": 7.0,
+   "direction": "up",
+   "available": true,
+   "last": 58.0,
+   "baseline": 54.14,
+   "diff": 3.86,
+   "dev": 0.551,
+   "flagged": true,
+   "days": 15,
+   "reason": ""
+  },
+  {
+   "key": "hrv",
+   "name": "Overnight HRV",
+   "unit": "ms",
+   "weight": 25,
+   "range": 15.0,
+   "direction": "down",
+   "available": true,
+   "last": 55.0,
+   "baseline": 53.14,
+   "diff": 1.86,
+   "dev": 0.0,
+   "flagged": false,
+   "days": 15,
+   "reason": ""
+  },
+  {
+   "key": "resp",
+   "name": "Sleeping respiration",
+   "unit": "br/min",
+   "weight": 25,
+   "range": 3.0,
+   "direction": "up",
+   "available": false,
+   "last": null,
+   "baseline": null,
+   "diff": null,
+   "dev": null,
+   "flagged": false,
+   "days": 0,
+   "reason": "Not in the Garmin data Kailo shares."
+  },
+  {
+   "key": "spo2",
+   "name": "Overnight blood oxygen",
+   "unit": "%",
+   "weight": 20,
+   "range": 3.0,
+   "direction": "down",
+   "available": false,
+   "last": null,
+   "baseline": null,
+   "diff": null,
+   "dev": null,
+   "flagged": false,
+   "days": 0,
+   "reason": "Not in the Garmin data Kailo shares."
+  }
+ ],
+ "missing": [
+  "Sleeping respiration",
+  "Overnight blood oxygen"
+ ],
+ "history": [
+  {
+   "date": "2026-10-25",
+   "score": 4,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-10-26",
+   "score": 0,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-10-27",
+   "score": 5,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-10-28",
+   "score": 4,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-10-29",
+   "score": 11,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-10-30",
+   "score": 8,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-10-31",
+   "score": 15,
+   "band": "Clear",
+   "used": 2,
+   "flags": 1
+  },
+  {
+   "date": "2026-11-01",
+   "score": 3,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-11-02",
+   "score": 27,
+   "band": "Watch",
+   "used": 2,
+   "flags": 1
+  },
+  {
+   "date": "2026-11-03",
+   "score": 7,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-11-04",
+   "score": 2,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-11-05",
+   "score": 2,
+   "band": "Clear",
+   "used": 2,
+   "flags": 0
+  },
+  {
+   "date": "2026-11-06",
+   "score": 30,
+   "band": "Watch",
+   "used": 2,
+   "flags": 1
+  },
+  {
+   "date": "2026-11-07",
+   "score": 18,
+   "band": "Clear",
+   "used": 2,
+   "flags": 1
+  }
+ ],
+ "method": {
+  "baseline": "Mean of the 7 nights before last night, last night excluded.",
+  "flag_at": 0.35,
+  "multiplier": "x0.5 no flags, x0.6 one, x1.0 two, x1.15 three, x1.3 four",
+  "bands": "0-24 Clear, 25-44 Watch, 45-64 Elevated, 65-84 High, 85-100 Very likely",
+  "source": "Garmin via Kailo (context_get_hrv, context_get_heart_rate)"
+ }
+}

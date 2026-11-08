@@ -12,6 +12,9 @@ Both read the same `data.json`, so one refresh updates both.
 |------|------------|
 | `index.html` | The public story page. Its story text and race descriptions are written by hand; its numbers come from `data.json`. |
 | `TAD-Training-Dashboard-x6j9szpy.html` | The personal dashboard: layout, styles, charts and the written commentary. |
+| `Illness-Check-uk064es3.html` | *Morning illness check*, a gauge of early illness signs from overnight HRV and resting heart rate. Not linked from either page. |
+| `illness-1mcyzk90.json` | The illness check's numbers: last night's score, band, per-metric values vs. 7-night baseline, and a 60-night score history. Only the illness check page reads it. |
+| `scripts/illness_check.py` | Computes the illness check from Kailo's HRV and resting heart rate answers and rewrites its JSON. |
 | `img/` | Race photos used on the story page (resized, metadata stripped). |
 | `data.json` | The numbers: runs, weekly mileage, fitness/fatigue, HRV, resting HR, sleep, PBs, marathon-projection trend (`proj`). Both pages read it when they open. |
 | `.nojekyll` | An empty file that tells GitHub Pages to serve the page as-is. |
@@ -25,6 +28,12 @@ Everything else comes from the two files in this repo. (Opening either page stra
 Updates happen on demand, not on a schedule. When Tim asks Claude to refresh the dashboard, Claude:
 pulls the latest data from Strava, Garmin (via Kailo) and TrainingPeaks; rewrites `data.json`
 (and edits the dashboard's commentary when it needs to change); and commits the change to this repo. GitHub Pages republishes the page about a minute later, at the same URL.
+
+### Morning illness check
+
+A separate scheduled Claude task runs every morning (9:13 AM Pacific). It pulls overnight HRV and resting heart rate from Garmin via Kailo,
+runs `scripts/illness_check.py`, commits the updated `illness-1mcyzk90.json`, and sends Tim a push summary.
+It never touches `data.json` or the other pages, and the daily dashboard refresh leaves the illness files alone.
 
 ## One-time setup (GitHub Pages)
 
