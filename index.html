@@ -329,10 +329,20 @@ html{scroll-behavior:smooth}
         <div class="rbody"><div class="rname">Golden Gate Half <span class="tag">New PR</span></div><div class="rdesc">Out over the Golden Gate Bridge and back, nearly 800 feet of climbing — and more than four minutes faster than July. Hit the goal time with 29 seconds to spare.</div><div class="rmeta">13.1 mi · 8:41/mi · 165 bpm avg · <a href="#raceday">photos</a></div></div>
         <div class="rres">1:54:31</div>
       </div>
-      <div class="race next">
+      <div class="race" data-date="2026-11-26">
         <div class="rdate">Nov 26, 2026 · Cleveland</div>
-        <div class="rbody"><div class="rname">Turkey Trot 5-Miler <span class="tag">Up next</span></div><div class="rdesc">Back where it began, one year on. Same race, a very different runner.</div></div>
+        <div class="rbody"><div class="rname">Turkey Trot 5-Miler</div><div class="rdesc">Back where it began, one year on. Same race, a very different runner.</div></div>
         <div class="rres">5 mi</div>
+      </div>
+      <div class="race" data-date="2027-01-10">
+        <div class="rdate">Jan 10, 2027 · San Francisco</div>
+        <div class="rbody"><div class="rname">Hot Chocolate 15K</div><div class="rdesc">A tune-up through Golden Gate Park, fourteen weeks out from Vienna. Same distance as Bay to Breakers last May, so it's a clean before-and-after.</div></div>
+        <div class="rres">15K</div>
+      </div>
+      <div class="race" data-date="2027-02-07">
+        <div class="rdate">Feb 7, 2027 · San Francisco</div>
+        <div class="rbody"><div class="rname">San Francisco Half Marathon</div><div class="rdesc">I ran this event's 10K in February 2026. One year later, the full 13.1: through Golden Gate Park and out along the Great Highway, ten weeks before Vienna.</div></div>
+        <div class="rres">13.1</div>
       </div>
       <div class="race goal">
         <div class="rdate">Apr 18, 2027 · Vienna</div>
@@ -407,6 +417,16 @@ html{scroll-behavior:smooth}
   function syncBtn(){tb.textContent=curDark()?'Light':'Dark';}
   tb.addEventListener('click',function(){root.setAttribute('data-theme',curDark()?'light':'dark');syncBtn();paintChart();});
   syncBtn();
+
+  /* ---- mark the next upcoming race automatically ---- */
+  (function(){
+    var today=new Date();today.setHours(0,0,0,0);
+    var rows=document.querySelectorAll('.race[data-date]');
+    for(var i=0;i<rows.length;i++){
+      var d=new Date(rows[i].getAttribute('data-date')+'T23:59:59');
+      if(d>=today){rows[i].classList.add('next');var n=rows[i].querySelector('.rname');if(n)n.insertAdjacentHTML('beforeend',' <span class="tag">Up next</span>');break;}
+    }
+  })();
 
   /* ---- countdown + journey ring ---- */
   var start=new Date('2025-09-01T00:00:00-07:00').getTime();
