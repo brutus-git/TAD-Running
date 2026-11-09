@@ -118,8 +118,8 @@
         <dt>Deviation</dt><dd>Change in the direction that signals illness, divided by each metric's full scale, clamped to 0–1. A metric is flagged above 0.35 (the tick on each bar).</dd>
         <dt>Score</dt><dd>Weighted average of the available metrics (RHR 30, HRV 25, respiration 25, SpO2 20), divided by the weights used; ×0.5 with no flags, ×0.6 with one, ×1.0 with two, ×1.15 with three, ×1.3 with four; capped at 100.</dd>
         <dt>Bands</dt><dd>0–24 Clear · 25–44 Watch · 45–64 Elevated · 65–84 High · 85–100 Very likely.</dd>
-        <dt>Unavailable</dt><dd>Missing last night, or fewer than 4 nights in the last 15. Respiration and blood oxygen aren't in the Garmin data Kailo shares.</dd>
-        <dt>Source</dt><dd>Garmin via Kailo, pulled each morning by a scheduled Claude task.</dd>
+        <dt>Unavailable</dt><dd>Missing last night, or fewer than 4 nights in the last 15. Each greyed-out card says why.</dd>
+        <dt>Source</dt><dd><span id="src">—</span>, pulled each morning by a scheduled Claude task.</dd>
       </dl>
     </details>
   </footer>
@@ -225,6 +225,7 @@
     $('used').textContent = j.used==null?'—':j.used;
     $('flags').textContent = j.flags==null?'—':j.flags;
     $('advice').textContent = j.advice || '—';
+    $('src').textContent = (j.method && j.method.source) || '—';
     drawGauge(j.score);
     var grid=$('metrics'); grid.innerHTML='';
     (j.metrics||[]).forEach(function(m){ grid.appendChild(metricCard(m)); });

@@ -25,15 +25,20 @@ Everything else comes from the two files in this repo. (Opening either page stra
 
 ## How the data gets updated
 
-Updates happen on demand, not on a schedule. When Tim asks Claude to refresh the dashboard, Claude:
-pulls the latest data from Strava, Garmin (via Kailo) and TrainingPeaks; rewrites `data.json`
-(and edits the dashboard's commentary when it needs to change); and commits the change to this repo. GitHub Pages republishes the page about a minute later, at the same URL.
+One scheduled Claude task, "Daily running refresh (illness check + dashboard)", runs every morning at 9:13 AM Pacific.
+It pulls from the Garmin Personal API first (through Tim's Mac, so the Mac must be awake), with Strava and Kailo as backups,
+plus TrainingPeaks (via Chrome) and the TrainingPeaks calendar feed. It does two separate commits:
+
+1. **Illness check:** runs `scripts/illness_check.py` and commits only `illness-1mcyzk90.json`.
+2. **Dashboard refresh:** rewrites `data.json` and the dashboard's factual numbers, and commits those.
+
+A failure in one part doesn't block the other. GitHub Pages republishes about a minute after each push. Tim can also ask Claude for a refresh at any time.
 
 ### Morning illness check
 
-A separate scheduled Claude task runs every morning (9:13 AM Pacific). It pulls overnight HRV and resting heart rate from Garmin via Kailo,
-runs `scripts/illness_check.py`, commits the updated `illness-1mcyzk90.json`, and sends Tim a push summary.
-It never touches `data.json` or the other pages, and the daily dashboard refresh leaves the illness files alone.
+Uses overnight HRV, resting heart rate and sleeping respiration (blood oxygen too, if Pulse Ox is turned on for sleep).
+The page shows the data source from `method.source` in the JSON. The illness part never touches `data.json` or the other pages,
+and the dashboard part leaves the illness files alone.
 
 ## One-time setup (GitHub Pages)
 
