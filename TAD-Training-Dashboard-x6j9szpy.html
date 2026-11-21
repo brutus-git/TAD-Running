@@ -204,14 +204,6 @@
 
 
   /* Plan vs actual table */
-  .rp-scroll{overflow-x:auto}
-  table.rp{width:100%; border-collapse:collapse; font-size:12.5px; min-width:560px}
-  table.rp th{font-family:"IBM Plex Mono"; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); padding:9px 8px; border-bottom:1px solid var(--border); text-align:right; font-weight:600}
-  table.rp th:nth-child(-n+2), table.rp td:nth-child(-n+2){text-align:left}
-  table.rp td{padding:7px 8px; text-align:right; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums}
-  table.rp td.sg{color:var(--muted); font-size:11.5px}
-  table.rp th.g55,table.rp td.g55{background:color-mix(in srgb,var(--good) 7%,transparent)}
-  table.rp th.g50,table.rp td.g50{background:color-mix(in srgb,var(--accent) 7%,transparent)}
 
   footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--border); font-size:11.5px; color:var(--faint); line-height:1.7}
   footer b{color:var(--muted); font-weight:600}
@@ -227,7 +219,7 @@
     <div>
       <div class="eyebrow">Road to 26.2 · Coach Chas Hodgdon</div>
       <h1>Vienna Marathon Build</h1>
-      <div class="sub">Tim&rsquo;s training cockpit — Golden Gate Half <b>done</b>: new half PR <b>1:54:31</b>, a 4-min PB. Vienna is the one focus now.</div>
+      <div class="sub">Tim&rsquo;s training cockpit for a first marathon · half PR <b>1:54:31</b> (Golden Gate, Nov 1)</div>
     </div>
     <div class="updated">Updated <b>Nov&nbsp;21, 2026</b><br>Strava · Garmin/Kailo · TP</div>
   </header>
@@ -240,9 +232,9 @@
       <div class="meter"><span id="v-bar" style="width:0%"></span></div>
     </div>
     <div class="cd sec">
-      <div class="label"><span class="race">Golden Gate Half ✓</span><span class="date">Nov 1, 2026</span></div>
-      <div class="big">1:54:31<small> new PR</small></div>
-      <div class="meta">13.18 mi · 8:41/mi · avg HR 165 · beat the 1:55 target by 29 sec</div>
+      <div class="label"><span class="race" id="n-name">Next race</span><span class="date" id="n-date">—</span></div>
+      <div class="big" id="n-days">—<small> days</small></div>
+      <div class="meta" id="n-meta">—</div>
     </div>
   </div>
 
@@ -259,31 +251,6 @@
   </div>
 
 
-  <section class="fade" id="raceplan">
-    <div class="sec-head"><h2>Golden Gate Half — race result</h2><span class="note">Nov 1 · 1:54:31 · new PR</span></div>
-    <div class="callout"><b>Result: 1:54:31</b> — 13.18 mi, 8:41/mi, avg HR 165 (max 184), ~780 ft of climbing. That&rsquo;s a <b>4:07 half-marathon PR</b> and 29 sec inside the 1:55 target on a hilly course — a controlled race, not a blow-up. It also set new Strava bests for the <b>mile (7:42)</b> and <b>10K (53:22)</b> along the way. Chas now has clean data to set your Vienna training paces.</div>
-    <div class="chartcard" style="margin-top:0">
-      <h3>Plan vs. actual — by course section</h3>
-      <div class="csub">How each programmed step actually went on Nov 1 — moving pace &amp; avg HR from the watch (Garmin laps), against the 1:55 plan. Net result: <b>1:54:31</b>, 29 sec under plan.</div>
-      <div class="rp-scroll"><table class="rp">
-        <thead><tr><th>#</th><th>Section</th><th>Dist</th><th>RPE</th><th class="g55">1:55 pace</th><th class="g55">1:55 HR</th><th class="g50">Actual pace</th><th class="g50">Actual HR</th></tr></thead>
-        <tbody>
-<tr><td>1</td><td class="sg">Start + Fort Mason hump</td><td>0.90</td><td>5</td><td class="g55">8:50–9:05</td><td class="g55">150–158</td><td class="g50">8:46</td><td class="g50">154</td></tr>
-<tr><td>2</td><td class="sg">Marina → Crissy (flat)</td><td>2.08</td><td>6</td><td class="g55">8:32–8:46</td><td class="g55">156–162</td><td class="g50">8:20</td><td class="g50">160</td></tr>
-<tr><td>3</td><td class="sg">Climb to bridge (+215 ft)</td><td>0.87</td><td>7</td><td class="g55">9:30–10:00</td><td class="g55">158–166 cap</td><td class="g50">9:27</td><td class="g50">166</td></tr>
-<tr><td>4</td><td class="sg">Bridge out</td><td>1.73</td><td>6</td><td class="g55">8:38–8:54</td><td class="g55">160–165</td><td class="g50">8:51</td><td class="g50">163</td></tr>
-<tr><td>5</td><td class="sg">Fort Baker hairpin</td><td>0.58</td><td>7</td><td class="g55">9:10–9:45</td><td class="g55">158–168 cap</td><td class="g50">8:32</td><td class="g50">160</td></tr>
-<tr><td>6</td><td class="sg">Bridge back</td><td>1.05</td><td>6–7</td><td class="g55">8:40–8:56</td><td class="g55">160–166</td><td class="g50">9:26</td><td class="g50">168</td></tr>
-<tr><td>7</td><td class="sg">Drop into Presidio</td><td>0.77</td><td>6</td><td class="g55">8:08–8:26</td><td class="g55">158–165</td><td class="g50">8:52</td><td class="g50">162</td></tr>
-<tr><td>8</td><td class="sg">Presidio climb (+170 ft)</td><td>1.06</td><td>7–8</td><td class="g55">9:05–9:40</td><td class="g55">162–168 cap</td><td class="g50">9:24</td><td class="g50">167</td></tr>
-<tr><td>9</td><td class="sg">Big descent (−320 ft)</td><td>1.35</td><td>6–7</td><td class="g55">7:55–8:15</td><td class="g55">158–166</td><td class="g50">8:01</td><td class="g50">166</td></tr>
-<tr><td>10</td><td class="sg">Crissy → Marina (flat)</td><td>2.02</td><td>8</td><td class="g55">8:28–8:42</td><td class="g55">166–172</td><td class="g50">8:28</td><td class="g50">172</td></tr>
-<tr><td>11</td><td class="sg">Fort Mason hump + finish</td><td>0.69</td><td>9–10</td><td class="g55">8:35–8:55</td><td class="g55">172+ open</td><td class="g50">8:36</td><td class="g50">178</td></tr>
-        </tbody>
-      </table></div>
-      <div class="cnote"><b>How it played out vs the 1:55 plan:</b> banked time early (the Marina flat at 8:20 and both bridge climbs at/under plan), gave a little back on the bridge-back and the drop into the Presidio — ran those more conservatively than planned — then closed hard: the big descent at 8:01 and the flat-to-finish at 8:28 / 8:36 with HR climbing to 178. Net 1:54:31, 29 sec inside plan. Actual = moving pace &amp; avg HR per step (Garmin laps).</div>
-    </div>
-  </section>
   <section class="fade">
     <div class="sec-head"><h2>Current fitness</h2><span class="note">Garmin / Kailo</span></div>
     <div class="stats">
@@ -465,6 +432,16 @@
     var today=new Date(); today.setHours(0,0,0,0);
     var vienna=new Date(2027,3,18), gg=new Date(2026,10,1), start=new Date(2025,8,1);
     var vD=Math.max(0,db(today,vienna)), gD=Math.max(0,db(today,gg));
+    var RACES=[[new Date(2026,10,26),'Cleveland Turkey Trot','Thu · Nov 26, 2026','5 mi · fun run on the Thanksgiving trip'],
+               [new Date(2027,0,10),'Hot Chocolate 15K','Sun · Jan 10, 2027','B race · Golden Gate Park · 15K start 8:10 AM'],
+               [new Date(2027,1,7),'SF Half Marathon','Sun · Feb 7, 2027','B race · Golden Gate Park + Great Highway · mostly flat']];
+    var nx=RACES.filter(function(r){return db(today,r[0])>=0;})[0];
+    if(nx){var nd=db(today,nx[0]);
+      document.getElementById('n-name').textContent='Next: '+nx[1];
+      document.getElementById('n-date').textContent=nx[2];
+      document.getElementById('n-days').innerHTML=(nd===0?'Today':nd+'<small> day'+(nd===1?'':'s')+'</small>');
+      document.getElementById('n-meta').textContent=nx[3];}
+    else{document.getElementById('n-name').textContent='Next: Vienna';document.getElementById('n-days').innerHTML=vD+'<small> days</small>';document.getElementById('n-meta').textContent='The goal race';}
     document.getElementById('v-days').innerHTML=vD+'<small> days</small>';
     document.getElementById('v-meta').textContent=(vD/7).toFixed(0)+' weeks out · your first full marathon';
     var jTot=db(start,vienna), jNow=db(start,today);
