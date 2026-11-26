@@ -1,24 +1,24 @@
 {
- "updated": "2026-11-25",
- "generated_at": "2026-11-25T17:14:36Z",
- "night": "2026-11-25",
+ "updated": "2026-11-26",
+ "generated_at": "2026-11-26T17:14:12Z",
+ "night": "2026-11-26",
  "synced": true,
- "score": 30,
- "band": "Watch",
+ "score": 16,
+ "band": "Clear",
  "used": 3,
  "flags": 1,
- "raw": 0.4945,
+ "raw": 0.2598,
  "mult": 0.6,
- "advice": "Train as planned, but hold back on intensity and look again tomorrow.",
+ "advice": "Train as planned today.",
  "two_high": false,
  "prior": {
-  "night": "2026-11-24",
-  "score": 8,
-  "band": "Clear",
+  "night": "2026-11-25",
+  "score": 30,
+  "band": "Watch",
   "used": 3,
-  "flags": 0,
-  "raw": 0.165,
-  "mult": 0.5
+  "flags": 1,
+  "raw": 0.4945,
+  "mult": 0.6
  },
  "metrics": [
   {
@@ -30,9 +30,9 @@
    "direction": "up",
    "available": true,
    "last": 56.0,
-   "baseline": 53.71,
-   "diff": 2.29,
-   "dev": 0.3265,
+   "baseline": 54.43,
+   "diff": 1.57,
+   "dev": 0.2245,
    "flagged": false,
    "days": 15,
    "reason": ""
@@ -45,10 +45,10 @@
    "range": 15.0,
    "direction": "down",
    "available": true,
-   "last": 47.0,
-   "baseline": 62.0,
-   "diff": -15.0,
-   "dev": 1.0,
+   "last": 52.0,
+   "baseline": 58.29,
+   "diff": -6.29,
+   "dev": 0.419,
    "flagged": true,
    "days": 15,
    "reason": ""
@@ -62,9 +62,9 @@
    "direction": "up",
    "available": true,
    "last": 15.0,
-   "baseline": 14.43,
-   "diff": 0.57,
-   "dev": 0.1905,
+   "baseline": 14.57,
+   "diff": 0.43,
+   "dev": 0.1429,
    "flagged": false,
    "days": 15,
    "reason": ""
@@ -311,6 +311,13 @@
    "date": "2026-11-25",
    "score": 30,
    "band": "Watch",
+   "used": 3,
+   "flags": 1
+  },
+  {
+   "date": "2026-11-26",
+   "score": 16,
+   "band": "Clear",
    "used": 3,
    "flags": 1
   }
